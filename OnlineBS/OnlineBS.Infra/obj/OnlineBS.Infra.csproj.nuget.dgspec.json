@@ -109,7 +109,7 @@
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[*, )"
+              "version": "[3.1.4, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",

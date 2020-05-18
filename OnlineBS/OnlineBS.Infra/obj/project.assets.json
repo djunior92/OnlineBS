@@ -6297,7 +6297,7 @@
       "Microsoft.EntityFrameworkCore.Design >= 3.1.4",
       "Microsoft.EntityFrameworkCore.InMemory >= 3.1.4",
       "Microsoft.EntityFrameworkCore.Relational >= 3.1.4",
-      "Microsoft.EntityFrameworkCore.SqlServer >= *",
+      "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.4",
       "Microsoft.EntityFrameworkCore.Tools >= 3.1.4",
       "NETStandard.Library >= 2.0.3",
       "OnlineBS.Domain >= 1.0.0"
@@ -6358,7 +6358,7 @@
           },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
-            "version": "[*, )"
+            "version": "[3.1.4, )"
           },
           "Microsoft.EntityFrameworkCore.Tools": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",

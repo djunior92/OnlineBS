@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineBS.Api", "OnlineBS.Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineBS.Infra", "OnlineBS.Infra\OnlineBS.Infra.csproj", "{57016BB3-047E-4B90-A2BA-5765C83BE0E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineBS.Domain", "OnlineBS.Domain\OnlineBS.Domain.csproj", "{77031DDF-28D8-4DF4-A189-72E2360C0D40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{57016BB3-047E-4B90-A2BA-5765C83BE0E1}.Release|x64.Build.0 = Release|Any CPU
 		{57016BB3-047E-4B90-A2BA-5765C83BE0E1}.Release|x86.ActiveCfg = Release|Any CPU
 		{57016BB3-047E-4B90-A2BA-5765C83BE0E1}.Release|x86.Build.0 = Release|Any CPU
+		{77031DDF-28D8-4DF4-A189-72E2360C0D40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77031DDF-28D8-4DF4-A189-72E2360C0D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77031DDF-28D8-4DF4-A189-72E2360C0D40}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{77031DDF-28D8-4DF4-A189-72E2360C0D40}.Debug|x64.Build.0 = Debug|Any CPU
+		{77031DDF-28D8-4DF4-A189-72E2360C0D40}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{77031DDF-28D8-4DF4-A189-72E2360C0D40}.Debug|x86.Build.0 = Debug|Any CPU
+		{77031DDF-28D8-4DF4-A189-72E2360C0D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77031DDF-28D8-4DF4-A189-72E2360C0D40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77031DDF-28D8-4DF4-A189-72E2360C0D40}.Release|x64.ActiveCfg = Release|Any CPU
+		{77031DDF-28D8-4DF4-A189-72E2360C0D40}.Release|x64.Build.0 = Release|Any CPU
+		{77031DDF-28D8-4DF4-A189-72E2360C0D40}.Release|x86.ActiveCfg = Release|Any CPU
+		{77031DDF-28D8-4DF4-A189-72E2360C0D40}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

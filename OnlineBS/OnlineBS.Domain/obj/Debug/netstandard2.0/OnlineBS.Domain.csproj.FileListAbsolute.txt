@@ -1,0 +1,9 @@
+C:\Djalma\OnlineBS\OnlineBS.Domain\bin\Debug\netstandard2.0\OnlineBS.Domain.deps.json
+C:\Djalma\OnlineBS\OnlineBS.Domain\bin\Debug\netstandard2.0\OnlineBS.Domain.dll
+C:\Djalma\OnlineBS\OnlineBS.Domain\bin\Debug\netstandard2.0\OnlineBS.Domain.pdb
+C:\Djalma\OnlineBS\OnlineBS.Domain\obj\Debug\netstandard2.0\OnlineBS.Domain.csprojAssemblyReference.cache
+C:\Djalma\OnlineBS\OnlineBS.Domain\obj\Debug\netstandard2.0\OnlineBS.Domain.csproj.CoreCompileInputs.cache
+C:\Djalma\OnlineBS\OnlineBS.Domain\obj\Debug\netstandard2.0\OnlineBS.Domain.AssemblyInfoInputs.cache
+C:\Djalma\OnlineBS\OnlineBS.Domain\obj\Debug\netstandard2.0\OnlineBS.Domain.AssemblyInfo.cs
+C:\Djalma\OnlineBS\OnlineBS.Domain\obj\Debug\netstandard2.0\OnlineBS.Domain.dll
+C:\Djalma\OnlineBS\OnlineBS.Domain\obj\Debug\netstandard2.0\OnlineBS.Domain.pdb

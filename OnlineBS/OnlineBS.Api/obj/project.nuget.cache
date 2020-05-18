@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "X6OtoGRJMrkW2g/ZTsFwoSxpOvGsLixUAt82c7sM4HK7ocyiqLlIuTrvvO71T8eAJd4rM0xTJwZpw9hv5aYGGg==",
+  "dgSpecHash": "HaW9N4p6iuC3SHR2qYtk4rqDP0szC+ey3DkNfqXebALbHSsZEkKh1gj8ddFK2mKUp8uNKI4amU+i0o5x3TamQQ==",
   "success": true,
-  "projectFilePath": "C:\\Djalma\\OnlineBS\\OnlineBS.Api\\OnlineBS.Api.csproj",
+  "projectFilePath": "C:\\Djalma\\OnlineBS\\OnlineBs.Api\\OnlineBS.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DJALMA\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\DJALMA\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
@@ -12,6 +12,7 @@
     "C:\\Users\\DJALMA\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\3.1.4\\microsoft.entityframeworkcore.abstractions.3.1.4.nupkg.sha512",
     "C:\\Users\\DJALMA\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\3.1.4\\microsoft.entityframeworkcore.analyzers.3.1.4.nupkg.sha512",
     "C:\\Users\\DJALMA\\.nuget\\packages\\microsoft.entityframeworkcore.design\\3.1.4\\microsoft.entityframeworkcore.design.3.1.4.nupkg.sha512",
+    "C:\\Users\\DJALMA\\.nuget\\packages\\microsoft.entityframeworkcore.inmemory\\3.1.4\\microsoft.entityframeworkcore.inmemory.3.1.4.nupkg.sha512",
     "C:\\Users\\DJALMA\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\3.1.4\\microsoft.entityframeworkcore.relational.3.1.4.nupkg.sha512",
     "C:\\Users\\DJALMA\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\3.1.4\\microsoft.entityframeworkcore.sqlserver.3.1.4.nupkg.sha512",
     "C:\\Users\\DJALMA\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\3.1.4\\microsoft.extensions.caching.abstractions.3.1.4.nupkg.sha512",
