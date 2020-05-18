@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "M61cNz1fq+sVR1lNDS0o7OBpEsVCPAnc5y0q8sZvNvdpK2GpsCHrAuZK3zP+42S4+5DyS/OBoguarp9XwU6Wmg==",
+  "success": true,
+  "projectFilePath": "C:\\Djalma\\OnlineBS\\OnlineBS.Domain\\OnlineBS.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\DJALMA\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\DJALMA\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
