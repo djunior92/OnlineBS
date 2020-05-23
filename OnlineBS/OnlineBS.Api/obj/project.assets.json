@@ -5028,19 +5028,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DJALMA\\.nuget\\packages\\": {}
+    "C:\\Users\\Juninho\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Djalma\\OnlineBS\\OnlineBs.Api\\OnlineBS.Api.csproj",
+      "projectUniqueName": "D:\\Programas\\Microsoft\\OnlineBS\\OnlineBS.Api\\OnlineBS.Api.csproj",
       "projectName": "OnlineBS.Api",
-      "projectPath": "C:\\Djalma\\OnlineBS\\OnlineBs.Api\\OnlineBS.Api.csproj",
-      "packagesPath": "C:\\Users\\DJALMA\\.nuget\\packages\\",
-      "outputPath": "C:\\Djalma\\OnlineBS\\OnlineBs.Api\\obj\\",
+      "projectPath": "D:\\Programas\\Microsoft\\OnlineBS\\OnlineBS.Api\\OnlineBS.Api.csproj",
+      "packagesPath": "C:\\Users\\Juninho\\.nuget\\packages\\",
+      "outputPath": "D:\\Programas\\Microsoft\\OnlineBS\\OnlineBS.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\DJALMA\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Juninho\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -5051,11 +5051,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Djalma\\OnlineBS\\OnlineBS.Domain\\OnlineBS.Domain.csproj": {
-              "projectPath": "C:\\Djalma\\OnlineBS\\OnlineBS.Domain\\OnlineBS.Domain.csproj"
+            "D:\\Programas\\Microsoft\\OnlineBS\\OnlineBS.Domain\\OnlineBS.Domain.csproj": {
+              "projectPath": "D:\\Programas\\Microsoft\\OnlineBS\\OnlineBS.Domain\\OnlineBS.Domain.csproj"
             },
-            "C:\\Djalma\\OnlineBS\\OnlineBS.Infra\\OnlineBS.Infra.csproj": {
-              "projectPath": "C:\\Djalma\\OnlineBS\\OnlineBS.Infra\\OnlineBS.Infra.csproj"
+            "D:\\Programas\\Microsoft\\OnlineBS\\OnlineBS.Infra\\OnlineBS.Infra.csproj": {
+              "projectPath": "D:\\Programas\\Microsoft\\OnlineBS\\OnlineBS.Infra\\OnlineBS.Infra.csproj"
             }
           }
         }
@@ -5098,7 +5098,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

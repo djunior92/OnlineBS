@@ -10,3 +10,15 @@ C:\Djalma\OnlineBS\OnlineBS.Infra\obj\Debug\netstandard2.0\OnlineBS.Infra.Assemb
 C:\Djalma\OnlineBS\OnlineBS.Infra\obj\Debug\netstandard2.0\OnlineBS.Infra.csproj.CopyComplete
 C:\Djalma\OnlineBS\OnlineBS.Infra\obj\Debug\netstandard2.0\OnlineBS.Infra.dll
 C:\Djalma\OnlineBS\OnlineBS.Infra\obj\Debug\netstandard2.0\OnlineBS.Infra.pdb
+D:\Programas\Microsoft\OnlineBS\OnlineBS.Infra\bin\Debug\netstandard2.0\OnlineBS.Infra.deps.json
+D:\Programas\Microsoft\OnlineBS\OnlineBS.Infra\bin\Debug\netstandard2.0\OnlineBS.Infra.dll
+D:\Programas\Microsoft\OnlineBS\OnlineBS.Infra\bin\Debug\netstandard2.0\OnlineBS.Infra.pdb
+D:\Programas\Microsoft\OnlineBS\OnlineBS.Infra\bin\Debug\netstandard2.0\OnlineBS.Domain.dll
+D:\Programas\Microsoft\OnlineBS\OnlineBS.Infra\bin\Debug\netstandard2.0\OnlineBS.Domain.pdb
+D:\Programas\Microsoft\OnlineBS\OnlineBS.Infra\obj\Debug\netstandard2.0\OnlineBS.Infra.csprojAssemblyReference.cache
+D:\Programas\Microsoft\OnlineBS\OnlineBS.Infra\obj\Debug\netstandard2.0\OnlineBS.Infra.csproj.CoreCompileInputs.cache
+D:\Programas\Microsoft\OnlineBS\OnlineBS.Infra\obj\Debug\netstandard2.0\OnlineBS.Infra.AssemblyInfoInputs.cache
+D:\Programas\Microsoft\OnlineBS\OnlineBS.Infra\obj\Debug\netstandard2.0\OnlineBS.Infra.AssemblyInfo.cs
+D:\Programas\Microsoft\OnlineBS\OnlineBS.Infra\obj\Debug\netstandard2.0\OnlineBS.Infra.csproj.CopyComplete
+D:\Programas\Microsoft\OnlineBS\OnlineBS.Infra\obj\Debug\netstandard2.0\OnlineBS.Infra.dll
+D:\Programas\Microsoft\OnlineBS\OnlineBS.Infra\obj\Debug\netstandard2.0\OnlineBS.Infra.pdb

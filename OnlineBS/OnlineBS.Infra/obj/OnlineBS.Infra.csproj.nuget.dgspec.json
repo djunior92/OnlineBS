@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Djalma\\OnlineBS\\OnlineBS.Infra\\OnlineBS.Infra.csproj": {}
+    "D:\\Programas\\Microsoft\\OnlineBS\\OnlineBS.Infra\\OnlineBS.Infra.csproj": {}
   },
   "projects": {
-    "C:\\Djalma\\OnlineBS\\OnlineBS.Domain\\OnlineBS.Domain.csproj": {
+    "D:\\Programas\\Microsoft\\OnlineBS\\OnlineBS.Domain\\OnlineBS.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Djalma\\OnlineBS\\OnlineBS.Domain\\OnlineBS.Domain.csproj",
+        "projectUniqueName": "D:\\Programas\\Microsoft\\OnlineBS\\OnlineBS.Domain\\OnlineBS.Domain.csproj",
         "projectName": "OnlineBS.Domain",
-        "projectPath": "C:\\Djalma\\OnlineBS\\OnlineBS.Domain\\OnlineBS.Domain.csproj",
-        "packagesPath": "C:\\Users\\DJALMA\\.nuget\\packages\\",
-        "outputPath": "C:\\Djalma\\OnlineBS\\OnlineBS.Domain\\obj\\",
+        "projectPath": "D:\\Programas\\Microsoft\\OnlineBS\\OnlineBS.Domain\\OnlineBS.Domain.csproj",
+        "packagesPath": "C:\\Users\\Juninho\\.nuget\\packages\\",
+        "outputPath": "D:\\Programas\\Microsoft\\OnlineBS\\OnlineBS.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DJALMA\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Juninho\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
@@ -53,21 +53,21 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Djalma\\OnlineBS\\OnlineBS.Infra\\OnlineBS.Infra.csproj": {
+    "D:\\Programas\\Microsoft\\OnlineBS\\OnlineBS.Infra\\OnlineBS.Infra.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Djalma\\OnlineBS\\OnlineBS.Infra\\OnlineBS.Infra.csproj",
+        "projectUniqueName": "D:\\Programas\\Microsoft\\OnlineBS\\OnlineBS.Infra\\OnlineBS.Infra.csproj",
         "projectName": "OnlineBS.Infra",
-        "projectPath": "C:\\Djalma\\OnlineBS\\OnlineBS.Infra\\OnlineBS.Infra.csproj",
-        "packagesPath": "C:\\Users\\DJALMA\\.nuget\\packages\\",
-        "outputPath": "C:\\Djalma\\OnlineBS\\OnlineBS.Infra\\obj\\",
+        "projectPath": "D:\\Programas\\Microsoft\\OnlineBS\\OnlineBS.Infra\\OnlineBS.Infra.csproj",
+        "packagesPath": "C:\\Users\\Juninho\\.nuget\\packages\\",
+        "outputPath": "D:\\Programas\\Microsoft\\OnlineBS\\OnlineBS.Infra\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DJALMA\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Juninho\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
@@ -78,8 +78,8 @@
         "frameworks": {
           "netstandard2.0": {
             "projectReferences": {
-              "C:\\Djalma\\OnlineBS\\OnlineBS.Domain\\OnlineBS.Domain.csproj": {
-                "projectPath": "C:\\Djalma\\OnlineBS\\OnlineBS.Domain\\OnlineBS.Domain.csproj"
+              "D:\\Programas\\Microsoft\\OnlineBS\\OnlineBS.Domain\\OnlineBS.Domain.csproj": {
+                "projectPath": "D:\\Programas\\Microsoft\\OnlineBS\\OnlineBS.Domain\\OnlineBS.Domain.csproj"
               }
             }
           }
@@ -134,7 +134,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

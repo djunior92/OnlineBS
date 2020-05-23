@@ -29,7 +29,7 @@ namespace OnlineBS.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            string strConn = Configurantion.GetConnectionString("BDServico");
+            string strConn = Configurantion.GetConnectionString("DBConection");
             services.AddDbContext<DataContext>(options => options.UseSqlServer(strConn));
         
             services.AddTransient<IServicoRepository, ServicoRepository>();
