@@ -8,6 +8,7 @@ namespace OnlineBS.Infra.Context
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         public DbSet<Servico> Servicos { get; set; }
+        public DbSet<Anuncio> Anuncios { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -35,7 +36,7 @@ namespace OnlineBS.Infra.Context
             modelBuilder.Entity<Anuncio>().Property(e => e.Descricao).HasMaxLength(500).IsRequired();
             modelBuilder.Entity<Anuncio>().Property(e => e.Valor).IsRequired();
             modelBuilder.Entity<Anuncio>().Property(e => e.QtdeDisponivel).IsRequired();
-            modelBuilder.Entity<Anuncio>().Property(e => e.realizaEntrega).IsRequired();
+            modelBuilder.Entity<Anuncio>().Property(e => e.RealizaEntrega).IsRequired();
 
             modelBuilder.Entity<Venda>().ToTable("Venda");
             modelBuilder.Entity<Venda>().Property(e => e.Id);   
