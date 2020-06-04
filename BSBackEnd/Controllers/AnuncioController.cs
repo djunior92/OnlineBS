@@ -15,7 +15,9 @@ namespace BSBackEnd.Controllers
         [HttpGet]
         public IActionResult Read([FromServices]IAnuncioRepository repository)
         {
-            var anuncios = repository.Read();
+            var Id = new Guid(User.Identity.Name);
+
+            var anuncios = repository.Read(Id);
             return Ok(anuncios);
         }
 
