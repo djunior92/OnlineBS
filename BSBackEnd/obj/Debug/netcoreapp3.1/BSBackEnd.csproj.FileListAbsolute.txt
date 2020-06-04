@@ -60,3 +60,6 @@ D:\Programas\Microsoft\OnlineBS\BSBackEnd\obj\Debug\netcoreapp3.1\staticwebasset
 D:\Programas\Microsoft\OnlineBS\BSBackEnd\obj\Debug\netcoreapp3.1\BSBackEnd.dll
 D:\Programas\Microsoft\OnlineBS\BSBackEnd\obj\Debug\netcoreapp3.1\BSBackEnd.pdb
 D:\Programas\Microsoft\OnlineBS\BSBackEnd\obj\Debug\netcoreapp3.1\BSBackEnd.genruntimeconfig.cache
+D:\Programas\Microsoft\OnlineBS\BSBackEnd\bin\Debug\netcoreapp3.1\Npgsql.dll
+D:\Programas\Microsoft\OnlineBS\BSBackEnd\bin\Debug\netcoreapp3.1\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\Programas\Microsoft\OnlineBS\BSBackEnd\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
