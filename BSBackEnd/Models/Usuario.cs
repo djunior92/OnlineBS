@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace BSBackEnd.Models
@@ -7,14 +8,18 @@ namespace BSBackEnd.Models
     {
         public Guid Id { get; set; }
 
-        [Required]
+        [Required, MaxLength(100)]
         public string Nome { get; set; }
 
-        [Required]
+        [Required, MaxLength(30)]
         public string Email { get; set; }
 
-        [Required]
+        [Required, MaxLength(30)]
         public string Senha { get; set; }
+
+        public List<Pedido> ComprasRealizadas { get; set; }
+
+        public List<Anuncio> AnunciosRealizados { get; set; }
 
     }
 }

@@ -8,33 +8,32 @@ namespace BSBackEnd.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("anuncio")]
-    public class AnuncioController: ControllerBase
+    [Route("pedido")]
+    public class PedidoController: ControllerBase
     {
         //[AllowAnonymous] - permite login anônimo (sem token)
         [HttpGet]
-        public IActionResult Read([FromServices]IAnuncioRepository repository)
+        public IActionResult Read([FromServices]IPedidoRepository repository)
         {
             var Id = new Guid(User.Identity.Name);
 
-            var anuncios = repository.Read(Id);
-            return Ok(anuncios);
+            var pedidos = repository.Read(Id);
+            return Ok(pedidos);
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody]Anuncio model, [FromServices]IAnuncioRepository repository){
+        public IActionResult Create([FromBody]Pedido model, [FromServices]IPedidoRepository repository){
             if(!ModelState.IsValid)
                 return BadRequest();
 
-            //model.VendedorId = new Guid(User.Identity.Name); djalma
-            model.VendedorId = new Guid(User.Identity.Name); 
+            model.CompradorId = new Guid(User.Identity.Name); 
 
             repository.Create(model);
             return Ok();
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(string id, [FromBody]Anuncio model, [FromServices]IAnuncioRepository repository)
+        public IActionResult Update(string id, [FromBody]Pedido model, [FromServices]IPedidoRepository repository)
         {
             if(!ModelState.IsValid)
                 return BadRequest();
@@ -44,7 +43,7 @@ namespace BSBackEnd.Controllers
         }   
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(string id, [FromServices]IAnuncioRepository repository)
+        public IActionResult Delete(string id, [FromServices]IPedidoRepository repository)
         {
                 repository.Delete(new Guid(id));
                 return Ok();

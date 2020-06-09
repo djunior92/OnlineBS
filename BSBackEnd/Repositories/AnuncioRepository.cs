@@ -38,7 +38,8 @@ namespace BSBackEnd.Repositories
 
         public List<Anuncio> Read(Guid Id)
         {
-            return _context.Anuncios.Where(Anuncio => Anuncio.VendedorId == Id).ToList();            
+            //return _context.Anuncios.Where(Anuncio => Anuncio.VendedorId == Id).ToList();             djalma
+            return _context.Anuncios.Where(Anuncio => Anuncio.VendedorId == Id).ToList();             
         }
 
         public void Update(Guid id, Anuncio anuncio)

@@ -42,12 +42,15 @@ namespace BSBackEnd
             });
 
 
-            //services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase("BDOnlineBS"));
-            services.AddDbContext<DataContext>(options => options.UseNpgsql(Configuration.GetConnectionString("Heroku")));
+            ///*Local*/services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase("BDOnlineBS"));
+            ///*PostgreSQL*/services.AddDbContext<DataContext>(options => options.UseNpgsql(Configuration.GetConnectionString("Heroku")));  
+            /*SQL SERVER*/services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BDSQLSERVER")));
+            
             //services.AddSingleton - por aplicação
             //services.AddTransient - por transação 
-            services.AddTransient<IAnuncioRepository, AnuncioRepository>();
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+            services.AddTransient<IAnuncioRepository, AnuncioRepository>();
+            services.AddTransient<IPedidoRepository, PedidoRepository>();            
         }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
