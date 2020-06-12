@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Threading.Tasks;
+using BSBackEnd.Models.Consultas;
 
 namespace BSBackEnd.Repositories
 {
@@ -38,8 +40,9 @@ namespace BSBackEnd.Repositories
 
         public List<Pedido> Read(Guid Id)
         {
-            //return _context.Pedidos.Where(Pedido => Pedido.VendedorId == Id).ToList();             djalma
-            return _context.Pedidos.Where(Pedido => Pedido.CompradorId == Id).ToList();             
+            //return _context.Pedidos.Where(Pedido => Pedido.CompradorId == Id).ToList();             
+            //var product = await context.Products.Include(x => x.Category).FirstOrDefaultAsync(x => x.Id == id);   exemplo
+            return _context.Pedidos.Include(x => x.Anuncio).ToList();
         }
 
         public void Update(Guid id, Pedido pedido)

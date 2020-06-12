@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using BSBackEnd.Models;
 using BSBackEnd.Repositories;
 using Microsoft.AspNetCore.Authorization;
@@ -16,7 +17,6 @@ namespace BSBackEnd.Controllers
         public IActionResult Read([FromServices]IPedidoRepository repository)
         {
             var Id = new Guid(User.Identity.Name);
-
             var pedidos = repository.Read(Id);
             return Ok(pedidos);
         }

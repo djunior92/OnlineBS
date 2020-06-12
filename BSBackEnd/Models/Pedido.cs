@@ -13,9 +13,9 @@ namespace BSBackEnd.Models
         [Required]    
         public Guid AnuncioId { get; set; }          //Anuncio escolhido    
         public Anuncio Anuncio { get; set; }         //Anuncio escolhido    
-        [Required]   
+        [Required(ErrorMessage = "Quantidade obrigatória")]   
         public int Qtde { get; set; }                //Quantidade solicitada (se existir em estoque)
-        [Required]   
+        [Required(ErrorMessage = "Informe se deseja entregaa")]   
         public bool SolicitaEntrega { get; set; }    //Se o comprador deseja que entreguem o produto (caso o vendedor forneça entrega)
         public bool Estorno { get; set; }            //Se o pedido foi estornado, a quantidade do item volta ao estoque disponível
 

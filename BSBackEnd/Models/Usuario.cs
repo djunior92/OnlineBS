@@ -8,13 +8,13 @@ namespace BSBackEnd.Models
     {
         public Guid Id { get; set; }
 
-        [Required, MaxLength(100)]
+        [Required(ErrorMessage = "Nome obrigatório"), MaxLength(100)]
         public string Nome { get; set; }
 
-        [Required, MaxLength(30)]
+        [Required(ErrorMessage = "Email obrigatório"), MaxLength(30), ]
         public string Email { get; set; }
 
-        [Required, MaxLength(30)]
+        [Required(ErrorMessage = "Senha obrigatória"), MaxLength(30)]
         public string Senha { get; set; }
 
         public List<Pedido> ComprasRealizadas { get; set; }
