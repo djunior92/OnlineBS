@@ -21,6 +21,13 @@ namespace BSBackEnd.Controllers
             return Ok(anuncios);
         }
 
+        [HttpGet("{likeTitle}")]
+        public IActionResult Read(string likeTitle, [FromServices]IAnuncioRepository repository)
+        { 
+            var anuncios = repository.Read(likeTitle);
+            return Ok(anuncios);
+        }
+
         [HttpPost]
         public IActionResult Create([FromBody]Anuncio model, [FromServices]IAnuncioRepository repository){
             if(!ModelState.IsValid)

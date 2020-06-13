@@ -10,7 +10,7 @@ const String URL_POST_LOGIN =
     SERVER_ADDRESS + SERVER_PORT + SERVER_CONTEXT + "/usuario/login";
 const String URL_POST_USUARIO =
     SERVER_ADDRESS + SERVER_PORT + SERVER_CONTEXT + "/usuario";  
-const String URL_POST_ANUNCIO =
+const String URL_ANUNCIO =
     SERVER_ADDRESS + SERVER_PORT + SERVER_CONTEXT + "/anuncio";      
     
 

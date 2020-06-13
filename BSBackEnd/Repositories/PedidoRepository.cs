@@ -43,7 +43,7 @@ namespace BSBackEnd.Repositories
             //return _context.Pedidos.Where(Pedido => Pedido.CompradorId == Id).ToList();             
             //var product = await context.Products.Include(x => x.Category).FirstOrDefaultAsync(x => x.Id == id);   exemplo
             return _context.Pedidos.Include(x => x.Anuncio).ToList();
-        }
+        }        
 
         public void Update(Guid id, Pedido pedido)
         {            

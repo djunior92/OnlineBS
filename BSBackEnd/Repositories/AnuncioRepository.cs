@@ -9,6 +9,7 @@ namespace BSBackEnd.Repositories
     public interface IAnuncioRepository
     {
         List<Anuncio> Read(Guid Id);
+        List<Anuncio> Read(String likeTitle);
         void Create(Anuncio anuncio);
         void Delete(Guid Id);
         void Update(Guid id, Anuncio anuncio);
@@ -41,24 +42,22 @@ namespace BSBackEnd.Repositories
             return _context.Anuncios.Where(Anuncio => Anuncio.VendedorId == Id).ToList();   
         }
 
-        public void Update(Guid id, Anuncio anuncio)
-        {            
-            /*Se for receber apenas os campos, especificar. Se receber o objeto completo pode simplificar
-            var _anuncio = _context.Anuncios.Find(anuncio.Id);
-            _anuncio.Titulo = anuncio.Titulo;
-            _anuncio.Valor = anuncio.Valor;
-            _anuncio.QtdeDisponivel = anuncio.QtdeDisponivel;
-            _context.Entry(_anuncio).State = EntityState.Modified;       
-            _context.SaveChanges();*/     
+        public List<Anuncio> Read(String likeTitle)
+        {
+            return _context.Anuncios.Where(Anuncio => EF.Functions.Like(Anuncio.Titulo, "%"+likeTitle+"%")).ToList();          
+        }         
 
-            /*_context.Entry(anuncio).State = EntityState.Modified;   
-            _context.SaveChanges();    */
+        public void Update(Guid id, Anuncio anuncio)
+        {         
 
             var _anuncio = _context.Anuncios.Find(id);
 
             _anuncio.Titulo = anuncio.Titulo;
+            _anuncio.Descricao = anuncio.Descricao;
             _anuncio.Valor = anuncio.Valor;
             _anuncio.QtdeDisponivel = anuncio.QtdeDisponivel;
+            _anuncio.RealizaEntrega = anuncio.RealizaEntrega;
+            //_anuncio.Foto = anuncio.Foto;
 
             _context.Entry(_anuncio).State = EntityState.Modified;   
             _context.SaveChanges();    

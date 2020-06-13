@@ -37,7 +37,7 @@ class _AnuncioPageState extends State<AnuncioPage> {
     var preferences = await SharedPreferences.getInstance();
     var token = preferences.getString('token');
 
-    var response = await http.post(URL_POST_ANUNCIO,
+    var response = await http.post(URL_ANUNCIO,
         body: jsonEncode({
           'Titulo': titulo,
           'Descricao': descricao,
