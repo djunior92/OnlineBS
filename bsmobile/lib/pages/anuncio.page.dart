@@ -154,6 +154,30 @@ class _AnuncioPageState extends State<AnuncioPage> {
         //offset: Offset(-0.1, 0),
       );
 
+void _showDialogInformation(
+      BuildContext context, String title, String description) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text(title),
+          content: new Text(description),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }        
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -309,7 +333,10 @@ class _AnuncioPageState extends State<AnuncioPage> {
                     onPressed: () async {
                       if (_formKey.currentState.validate()) {
                         _formKey.currentState.save();
-                        //TODO: Salvar dados na API
+                       
+                        if (imgRotated == null) {
+                          _showDialogInformation(context, "Atenção", "Insira uma imagem do produto");
+                        }else{
                         if (await _create())
                           Navigator.of(context).pop();
                         else
@@ -317,6 +344,7 @@ class _AnuncioPageState extends State<AnuncioPage> {
                             content: Text("Falha ao cadastrar"),
                             backgroundColor: Colors.red,
                           ));
+                        }
                       }
                     },
                   ),

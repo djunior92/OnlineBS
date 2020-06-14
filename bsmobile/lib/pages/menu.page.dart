@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:bsmobile/uteis/server.dart';
 
-
 class MenuPage extends StatelessWidget {
   void _portraitModeOnly() {
     SystemChrome.setPreferredOrientations([
@@ -16,7 +15,7 @@ class MenuPage extends StatelessWidget {
     var preferences = await SharedPreferences.getInstance();
     preferences.setString('token', '');
     Navigator.of(context).pushReplacementNamed('/');
-  }   
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,137 +36,151 @@ class MenuPage extends StatelessWidget {
           )
         ],
       ),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: SingleChildScrollView(
+      body: Column(children: <Widget>[
+        Expanded(
+          child: SingleChildScrollView(
+            child: Container(
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
                 child: Column(
-              children: <Widget>[
-                Container(
-                  height: MediaQuery.of(context).size.height / 2,
-                  width: MediaQuery.of(context).size.height / 2,
-                  padding: EdgeInsets.all(20),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Column(
-                            children: <Widget>[
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.of(context).pushNamed('/anuncio');
-                                },
-                                child: Container(
-                                  width: 100,
-                                  height: 120,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                    fit: BoxFit.fitWidth,
-                                    image:
-                                        AssetImage('assets/images/anuncio.png'),
-                                  )),
-                                ),
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Column(
+                          children: <Widget>[
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).pushNamed('/anuncio');
+                              },
+                              child: Container(
+                                width: 110,
+                                height: 120,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                  fit: BoxFit.fitWidth,
+                                  image:
+                                      AssetImage('assets/images/anuncio.png'),
+                                )),
                               ),
-                              Text(
-                                'Anunciar',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.normal),
-                              )
-                            ],
-                          ),
-                          Column(
-                            children: <Widget>[
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.of(context).pushNamed('/compra');
-                                },
-                                child: Container(
-                                  width: 100,
-                                  height: 120,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                    fit: BoxFit.fitWidth,
-                                    image:
-                                        AssetImage('assets/images/compra.png'),
-                                  )),
-                                ),
+                            ),
+                            Text('Anunciar')
+                          ],
+                        ),
+                        Column(
+                          children: <Widget>[
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).pushNamed('/compra');
+                              },
+                              child: Container(
+                                width: 110,
+                                height: 120,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                  fit: BoxFit.fitWidth,
+                                  image: AssetImage('assets/images/compra.png'),
+                                )),
                               ),
-                              Text(
-                                'Comprar',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.normal),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                      Spacer(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Column(
-                            children: <Widget>[
-                              GestureDetector(
-                                onTap: () {
-                                  //Navigator.of(context).pushNamed('/perfil');
-                                },
-                                child: Container(
-                                  width: 100,
-                                  height: 120,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                    fit: BoxFit.fitWidth,
-                                    image:
-                                        AssetImage('assets/images/profile.png'),
-                                  )),
-                                ),
+                            ),
+                            Text('Comprar')
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Column(
+                          children: <Widget>[
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).pushNamed('/anunciolista');
+                              },
+                              child: Container(
+                                width: 100,
+                                height: 120,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                  fit: BoxFit.fitWidth,
+                                  image:
+                                      AssetImage('assets/images/findAnuncio.png'),
+                                )),
                               ),
-                              Text('Perfil')
-                            ],
-                          ),
-                          Column(
-                            children: <Widget>[
-                              GestureDetector(
-                                onTap: () {
-                                  //Navigator.of(context).pushNamed('/historico');
-                                },
-                                child: Container(
-                                  width: 100,
-                                  height: 120,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                    fit: BoxFit.fitWidth,
-                                    image: AssetImage(
-                                        'assets/images/historico.png'),
-                                  )),
-                                ),
+                            ),
+                            Text('Anúncios criados')
+                          ],
+                        ),
+                        Column(
+                          children: <Widget>[
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).pushNamed('/lista');
+                              },
+                              child: Container(
+                                width: 100,
+                                height: 120,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                  fit: BoxFit.fitWidth,
+                                  image:
+                                      AssetImage('assets/images/findCompra.png'),
+                                )),
                               ),
-                              Text('Histórico')
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                            ),
+                            Text('Compras Realizadas')
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Column(
+                          children: <Widget>[
+                            GestureDetector(
+                              onTap: () {
+                                //Navigator.of(context).pushNamed('/perfil');
+                              },
+                              child: Container(
+                                width: 100,
+                                height: 120,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                  fit: BoxFit.fitWidth,
+                                  image:
+                                      AssetImage('assets/images/profile.png'),
+                                )),
+                              ),
+                            ),
+                            Text('Editar Perfil')
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              ],
-            )),
+              ),
+            ),
           ),
-          Container(
-              //RODAPÉ
-              height: 100,
-              alignment: Alignment.topRight,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                image: AssetImage('assets/images/onlinebs.png'),
-                //alignment: Alignment.bottomRight
-              ))),
-        ],
-      ),
+        ),
+        Container(
+            //RODAPÉ
+            height: 100,
+            alignment: Alignment.topRight,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+              image: AssetImage('assets/images/onlinebs.png'),
+              //alignment: Alignment.bottomRight
+            )))
+      ]),
     );
   }
 }

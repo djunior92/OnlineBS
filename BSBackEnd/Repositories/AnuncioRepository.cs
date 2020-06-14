@@ -52,12 +52,8 @@ namespace BSBackEnd.Repositories
 
             var _anuncio = _context.Anuncios.Find(id);
 
-            _anuncio.Titulo = anuncio.Titulo;
-            _anuncio.Descricao = anuncio.Descricao;
-            _anuncio.Valor = anuncio.Valor;
             _anuncio.QtdeDisponivel = anuncio.QtdeDisponivel;
             _anuncio.RealizaEntrega = anuncio.RealizaEntrega;
-            //_anuncio.Foto = anuncio.Foto;
 
             _context.Entry(_anuncio).State = EntityState.Modified;   
             _context.SaveChanges();    

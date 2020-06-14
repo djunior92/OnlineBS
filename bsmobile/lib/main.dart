@@ -1,5 +1,7 @@
+import 'package:bsmobile/pages/altera.anuncio.dart';
 import 'package:bsmobile/pages/anuncio.page.dart';
 import 'package:bsmobile/pages/compra.page.dart';
+import 'package:bsmobile/pages/lista.anuncio.dart';
 import 'package:bsmobile/pages/menu.page.dart';
 import 'package:bsmobile/pages/usuario.page.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +23,8 @@ class App extends StatelessWidget {
     '/menu': (context) => MenuPage(),
     '/anuncio': (context) => AnuncioPage(),
     '/compra': (context) => CompraPage(),    
+    '/anunciolista': (context) => ListaAnuncioPage(),
+    '/anuncioaltera': (context) => AlteraAnuncioPage(anuncio: null,),
     //'/cadastro/:id': (context) => CadastroPage(),
   };
 

@@ -6,12 +6,14 @@ import 'package:http/http.dart' as http;
 import 'package:photo_view/photo_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class CompraPage extends StatefulWidget {
+import 'altera.anuncio.dart';
+
+class ListaAnuncioPage extends StatefulWidget {
   @override
-  _CompraPageState createState() => _CompraPageState();
+  _ListaAnuncioPageState createState() => _ListaAnuncioPageState();
 }
 
-class _CompraPageState extends State<CompraPage> {
+class _ListaAnuncioPageState extends State<ListaAnuncioPage> {
   var _formKey = GlobalKey<FormState>();
   Future<List> _future;
   String _pesquisa = "";
@@ -46,6 +48,8 @@ class _CompraPageState extends State<CompraPage> {
     );
   }
 
+
+
   Future<List<Anuncio>> _loadData() async {
     //recuperar o token
     var preferences = await SharedPreferences.getInstance();
@@ -53,11 +57,11 @@ class _CompraPageState extends State<CompraPage> {
 
     //acessar a api:
     var response = await http.get(
-      URL_ANUNCIO + '/' + _pesquisa,
+      URL_ANUNCIO,
       headers: {'Authorization': 'Bearer $token'},
     );
 
-    if ((response.statusCode == 200) && (_pesquisa != "")) {
+    if ((response.statusCode == 200)) {
       var _lista = new List<Anuncio>();
 
       Iterable dados = jsonDecode(response.body);
@@ -73,59 +77,13 @@ class _CompraPageState extends State<CompraPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Procurar produtos"), actions: [
+      appBar: AppBar(title: Text("Anúncios cadastrados"), actions: [
       ]),
       body: Form(
         key: _formKey,
         child: Column(
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Expanded(
-                  flex: 12,
-                  child: ListTile(
-                    title: Padding(
-                      padding: const EdgeInsets.only(
-                          top: 5, bottom: 5, left: 0, right: 0),
-                      child: TextFormField(
-                        autovalidate: false,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: '',
-                          labelText: 'O que você está procurando?',
-                        ),
-                        onSaved: (value) => _pesquisa = value,
-                        validator: (value) =>
-                            value.isEmpty ? 'Campo Obrigatório' : null,
-                      ),
-                    ),
-                    trailing: Padding(
-                      padding: const EdgeInsets.only(
-                          top: 0, bottom: 5, left: 0, right: 0),
-                      child: Wrap(
-                        spacing: 12,
-                        children: <Widget>[
-                          IconButton(
-                            icon: Icon(
-                              Icons.search,
-                              size: 40,
-                            ),
-                            onPressed: () {
-                              if (_formKey.currentState.validate()) {
-                                _formKey.currentState.save();
-                                setState(() {
-                                  _future = _loadData();
-                                });
-                              }
-                            },
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+           
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(
@@ -187,20 +145,21 @@ class _CompraPageState extends State<CompraPage> {
                                               child: Row(
                                                 children: <Widget>[
                                                   Expanded(
-                                                    flex: 3,
-                                                    child: Container(
-                                                      height: 95,
-                                                      width: 95,
-                                                      child: PhotoView(
-                                                          backgroundDecoration:
-                                                              BoxDecoration(
-                                                                  color: Colors
-                                                                      .transparent),
-                                                          imageProvider: MemoryImage(
-                                                              base64Decode(snapshot
-                                                                  .data[
-                                                                      position]
-                                                                  .foto))),
+                                                    flex: 1,
+                                                    child: Container(  
+                                                      alignment: Alignment.center,
+                                                      color: 
+                                                      snapshot.data[position].qtdeDisponivel == 0  ? Colors.red : Colors.green,                          
+                                                      
+                                                      child: Text(                                                        
+                                                        snapshot.data[position].qtdeDisponivel == 0  ? 'F' : 'A',
+                                                        style: TextStyle(
+                                                            
+                                                            color:
+                                                                Colors.white),
+                                                      ),
+
+
                                                     ),
                                                   ),
                                                   Expanded(
@@ -232,11 +191,12 @@ class _CompraPageState extends State<CompraPage> {
                                                           fontSize: 16,
                                                         ),
                                                       ),
-                                                      trailing: Wrap(
+                                                      trailing:
+                                                       Wrap(
                                                         spacing: 12,
                                                         children: <Widget>[
                                                           Icon(Icons
-                                                              .arrow_forward)
+                                                              .arrow_forward),
                                                         ],
                                                       ),
                                                     ),
@@ -247,11 +207,24 @@ class _CompraPageState extends State<CompraPage> {
                                           ],
                                         ),
                                         onTap: () {
-                                          _showDialogInformation(
+                                          /*_showDialogInformation(
                                               context,
                                               '',
                                               snapshot.data[position].titulo
                                                   .toString());
+                                                  'anunciolista'*/
+
+                                                  Navigator.of(context).pushReplacement(
+
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  AlteraAnuncioPage(
+                                                      anuncio:
+                                                         snapshot.data[position]
+                                                      ),
+                                            )
+
+                                          );
                                           /*print("click");
                                           Navigator.of(context).push(
                                             MaterialPageRoute(
