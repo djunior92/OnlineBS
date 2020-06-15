@@ -1,5 +1,7 @@
 import 'package:bsmobile/pages/altera.anuncio.dart';
 import 'package:bsmobile/pages/anuncio.page.dart';
+import 'package:bsmobile/pages/compra.confirma.dart';
+import 'package:bsmobile/pages/compra.escolha.page.dart';
 import 'package:bsmobile/pages/compra.page.dart';
 import 'package:bsmobile/pages/lista.anuncio.dart';
 import 'package:bsmobile/pages/menu.page.dart';
@@ -22,10 +24,11 @@ class App extends StatelessWidget {
     '/usuario': (context) => UsuarioPage(),
     '/menu': (context) => MenuPage(),
     '/anuncio': (context) => AnuncioPage(),
-    '/compra': (context) => CompraPage(),    
+    '/compraescolha': (context) => CompraEscolhaPage(),    
+    '/compra': (context) => CompraPage(anuncio: null,),
     '/anunciolista': (context) => ListaAnuncioPage(),
     '/anuncioaltera': (context) => AlteraAnuncioPage(anuncio: null,),
-    //'/cadastro/:id': (context) => CadastroPage(),
+    '/confirmacompra': (context) => ConfirmaCompraPage(anuncio: null,),
   };
 
     return MaterialApp(

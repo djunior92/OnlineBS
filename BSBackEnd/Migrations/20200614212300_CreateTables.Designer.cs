@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BSBackEnd.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200609020018_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200614212300_CreateTables")]
+    partial class CreateTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -71,8 +71,8 @@ namespace BSBackEnd.Migrations
                     b.Property<Guid>("CompradorId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("Estorno")
-                        .HasColumnType("bit");
+                    b.Property<DateTime>("DataPedido")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Qtde")
                         .HasColumnType("int");
@@ -95,20 +95,44 @@ namespace BSBackEnd.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Bairro")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Cep")
+                        .HasColumnType("nvarchar(8)")
+                        .HasMaxLength(8);
+
+                    b.Property<string>("CpfCnpj")
+                        .HasColumnType("nvarchar(14)")
+                        .HasMaxLength(14);
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(30)")
                         .HasMaxLength(30);
+
+                    b.Property<string>("Endereco")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
+                    b.Property<string>("Numero")
+                        .HasColumnType("nvarchar(6)")
+                        .HasMaxLength(6);
+
                     b.Property<string>("Senha")
                         .IsRequired()
                         .HasColumnType("nvarchar(30)")
                         .HasMaxLength(30);
+
+                    b.Property<string>("Telefone")
+                        .HasColumnType("nvarchar(14)")
+                        .HasMaxLength(14);
 
                     b.HasKey("Id");
 

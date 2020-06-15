@@ -31,9 +31,8 @@ namespace BSBackEnd.Controllers
         [HttpPost]
         public IActionResult Create([FromBody]Anuncio model, [FromServices]IAnuncioRepository repository){
             if(!ModelState.IsValid)
-                return BadRequest();
+                return BadRequest();                            
 
-            //model.VendedorId = new Guid(User.Identity.Name); djalma
             model.VendedorId = new Guid(User.Identity.Name); 
 
             repository.Create(model);

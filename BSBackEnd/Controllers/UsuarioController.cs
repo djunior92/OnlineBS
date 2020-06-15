@@ -12,13 +12,13 @@ namespace BSBackEnd.Controllers
 {
     [ApiController]
     [Route("usuario")]
-    public class UsuarioController: ControllerBase
+    public class UsuarioController : ControllerBase
     {
         [HttpPost]
         [Route("")]
-        public IActionResult Create([FromBody]Usuario model, [FromServices]IUsuarioRepository repository)
+        public IActionResult Create([FromBody] Usuario model, [FromServices] IUsuarioRepository repository)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return BadRequest();
 
             repository.Create(model);
@@ -28,27 +28,38 @@ namespace BSBackEnd.Controllers
 
         [HttpPost]
         [Route("login")]
-        public IActionResult Login([FromBody]UsuarioLogin model, [FromServices]IUsuarioRepository repository)
+        public IActionResult Login([FromBody] UsuarioLogin model, [FromServices] IUsuarioRepository repository)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return BadRequest();
 
             Usuario usuario = repository.Read(model.Email, model.Senha);
-            if(usuario == null)
-              return Unauthorized();
+            if (usuario == null)
+                return Unauthorized();
 
             usuario.Senha = "";
-            return Ok(new {
+            return Ok(new
+            {
                 usuario = usuario,
                 token = GenerateToken(usuario)
-            });      
+            });
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(string id, [FromBody] Usuario model, [FromServices] IUsuarioRepository repository)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            repository.Update(new Guid(id), model);
+            return Ok();
         }
 
         private string GenerateToken(Usuario usuario)
         {
             var TokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes("UmTokenMuitoGrandeEDiferenteParaNinguemDescobrir");
- 
+
 
             var descriptor = new SecurityTokenDescriptor
             {

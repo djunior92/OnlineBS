@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BSBackEnd.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class CreateTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,13 @@ namespace BSBackEnd.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     Nome = table.Column<string>(maxLength: 100, nullable: false),
                     Email = table.Column<string>(maxLength: 30, nullable: false),
-                    Senha = table.Column<string>(maxLength: 30, nullable: false)
+                    Senha = table.Column<string>(maxLength: 30, nullable: false),
+                    CpfCnpj = table.Column<string>(maxLength: 14, nullable: true),
+                    Endereco = table.Column<string>(maxLength: 100, nullable: true),
+                    Numero = table.Column<string>(maxLength: 6, nullable: true),
+                    Cep = table.Column<string>(maxLength: 8, nullable: true),
+                    Bairro = table.Column<string>(maxLength: 50, nullable: true),
+                    Telefone = table.Column<string>(maxLength: 14, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -54,7 +60,7 @@ namespace BSBackEnd.Migrations
                     AnuncioId = table.Column<Guid>(nullable: false),
                     Qtde = table.Column<int>(nullable: false),
                     SolicitaEntrega = table.Column<bool>(nullable: false),
-                    Estorno = table.Column<bool>(nullable: false)
+                    DataPedido = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

@@ -72,7 +72,7 @@ class MenuPage extends StatelessWidget {
                           children: <Widget>[
                             GestureDetector(
                               onTap: () {
-                                Navigator.of(context).pushNamed('/compra');
+                                Navigator.of(context).pushNamed('/compraescolha');
                               },
                               child: Container(
                                 width: 110,

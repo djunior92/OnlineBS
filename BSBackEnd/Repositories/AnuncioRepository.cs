@@ -44,7 +44,7 @@ namespace BSBackEnd.Repositories
 
         public List<Anuncio> Read(String likeTitle)
         {
-            return _context.Anuncios.Where(Anuncio => EF.Functions.Like(Anuncio.Titulo, "%"+likeTitle+"%")).ToList();          
+            return _context.Anuncios.Where(Anuncio => EF.Functions.Like(Anuncio.Titulo, "%"+likeTitle+"%") && Anuncio.QtdeDisponivel > 0).ToList();          
         }         
 
         public void Update(Guid id, Anuncio anuncio)

@@ -10,11 +10,11 @@ namespace BSBackEnd.Controllers
     [Authorize]
     [ApiController]
     [Route("pedido")]
-    public class PedidoController: ControllerBase
+    public class PedidoController : ControllerBase
     {
         //[AllowAnonymous] - permite login anônimo (sem token)
         [HttpGet]
-        public IActionResult Read([FromServices]IPedidoRepository repository)
+        public IActionResult Read([FromServices] IPedidoRepository repository)
         {
             var Id = new Guid(User.Identity.Name);
             var pedidos = repository.Read(Id);
@@ -22,32 +22,36 @@ namespace BSBackEnd.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody]Pedido model, [FromServices]IPedidoRepository repository){
-            if(!ModelState.IsValid)
+        public IActionResult Create([FromBody] Pedido model, [FromServices] IPedidoRepository repository)
+        {
+            if (!ModelState.IsValid ||
+                repository.DisponibilidadeEntrega(model) == false ||
+                repository.QuantidadeValida(model) == false
+                )
                 return BadRequest();
 
-            model.CompradorId = new Guid(User.Identity.Name); 
+            model.CompradorId = new Guid(User.Identity.Name);
 
             repository.Create(model);
             return Ok();
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(string id, [FromBody]Pedido model, [FromServices]IPedidoRepository repository)
+        public IActionResult Update(string id, [FromBody] Pedido model, [FromServices] IPedidoRepository repository)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return BadRequest();
 
-                repository.Update(new Guid(id), model);
-                return Ok();
-        }   
+            repository.Update(new Guid(id), model);
+            return Ok();
+        }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(string id, [FromServices]IPedidoRepository repository)
+        public IActionResult Delete(string id, [FromServices] IPedidoRepository repository)
         {
-                repository.Delete(new Guid(id));
-                return Ok();
-        }              
+            repository.Delete(new Guid(id));
+            return Ok();
+        }
 
     }
 }

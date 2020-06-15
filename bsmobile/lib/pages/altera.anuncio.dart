@@ -1,4 +1,5 @@
 import 'package:bsmobile/models/Anuncio.dart';
+import 'package:bsmobile/pages/widgets/CardInformation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -42,15 +43,15 @@ class _AlteraAnuncioPageState extends State<AlteraAnuncioPage> {
     var preferences = await SharedPreferences.getInstance();
     var token = preferences.getString('token');
 
-    var response = await http.put(URL_ANUNCIO+"/"+widget.anuncio.id,
-        body: jsonEncode({      
-         'Titulo': widget.anuncio.titulo,
+    var response = await http.put(URL_ANUNCIO + "/" + widget.anuncio.id,
+        body: jsonEncode({
+          'Titulo': widget.anuncio.titulo,
           'Descricao': widget.anuncio.descricao,
           'Valor': widget.anuncio.valor,
           'QtdeDisponivel': qtdDisponivel,
           'RealizaEntrega': realizaEntrega,
           'foto': widget.anuncio.foto
-  }),
+        }),
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
           'Authorization': 'Bearer $token'
@@ -74,109 +75,22 @@ class _AlteraAnuncioPageState extends State<AlteraAnuncioPage> {
             key: _formKey,
             child: Column(
               children: [
-             Container(
-                    height: MediaQuery.of(context).size.height/2,
-                    width: MediaQuery.of(context).size.width,
-                    child: PhotoView(
-                        backgroundDecoration:
-                            BoxDecoration(color: Colors.transparent),
-                        imageProvider:
-                            MemoryImage(base64Decode(widget.anuncio.foto))),
-                  ),
-           
-                Card(
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(color: Colors.grey, width: 1),
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: ListTile(
-                          title: Text(
-                            'Título',
-                            textAlign: TextAlign.left,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: Text(
-                            widget.anuncio.titulo,
-                            textAlign: TextAlign.left,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                Container(
+                  height: MediaQuery.of(context).size.height / 2,
+                  width: MediaQuery.of(context).size.width,
+                  child: PhotoView(
+                      backgroundDecoration:
+                          BoxDecoration(color: Colors.transparent),
+                      imageProvider:
+                          MemoryImage(base64Decode(widget.anuncio.foto))),
                 ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(color: Colors.grey, width: 1),
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: ListTile(
-                          title: Text(
-                            'Descrição',
-                            textAlign: TextAlign.left,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: Text(
-                            widget.anuncio.descricao,
-                            textAlign: TextAlign.left,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(color: Colors.grey, width: 1),
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: ListTile(
-                          title: Text(
-                            'Valor do produto',
-                            textAlign: TextAlign.left,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: Text(
-                            widget.anuncio.valor.toString(),
-                            textAlign: TextAlign.left,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                CardInformation(
+                    cabecalho: 'Título', corpo: widget.anuncio.titulo, maxLnCorpo: 2),
+                CardInformation(
+                    cabecalho: 'Descrição', corpo: widget.anuncio.descricao, maxLnCorpo: 3),
+                CardInformation(
+                    cabecalho: 'Valor do produto',
+                    corpo: widget.anuncio.valor.toString(), maxLnCorpo: 1),
                 SizedBox(
                   height: 20,
                 ),
@@ -223,9 +137,9 @@ class _AlteraAnuncioPageState extends State<AlteraAnuncioPage> {
                   textTheme: ButtonTextTheme.primary,
                   child: RaisedButton(
                     child: Text("Salvar alterações"),
-                        onPressed: () async {
+                    onPressed: () async {
                       if (_formKey.currentState.validate()) {
-                        _formKey.currentState.save(); 
+                        _formKey.currentState.save();
 
                         if (await _update())
                           Navigator.of(context).pop();
@@ -234,9 +148,9 @@ class _AlteraAnuncioPageState extends State<AlteraAnuncioPage> {
                             content: Text("Falha ao cadastrar"),
                             backgroundColor: Colors.red,
                           ));
-                        }
-                        //TODO: Salvar dados na API
-                        /*_scaffoldKey.currentState.showSnackBar(SnackBar(
+                      }
+                      //TODO: Salvar dados na API
+                      /*_scaffoldKey.currentState.showSnackBar(SnackBar(
                           content: Text("Classe:" +
                               widget.anuncio.titulo +
                               " - Edit:" +

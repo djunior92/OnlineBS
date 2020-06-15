@@ -16,6 +16,19 @@ namespace BSBackEnd.Models
 
         [Required(ErrorMessage = "Senha obrigatória"), MaxLength(30)]
         public string Senha { get; set; }
+        [MaxLength(14)]
+        public string CpfCnpj { get; set; }        
+        [MaxLength(100)]
+        public string Endereco { get; set; }
+        [MaxLength(6)]
+        public string Numero { get; set; }
+        [MaxLength(8)]
+        public string Cep { get; set; }
+        [MaxLength(50)]
+        public string Bairro { get; set; }
+        [MaxLength(14)]
+        public string Telefone { get; set; }
+
 
         public List<Pedido> ComprasRealizadas { get; set; }
 
