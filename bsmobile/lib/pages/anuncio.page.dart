@@ -198,6 +198,7 @@ class _AnuncioPageState extends State<AnuncioPage> {
                   padding: const EdgeInsets.only(bottom: 20),
                   child: TextFormField(
                     autovalidate: false,
+                    maxLength: 100,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: 'Título',
@@ -212,6 +213,7 @@ class _AnuncioPageState extends State<AnuncioPage> {
                   padding: const EdgeInsets.only(bottom: 20),
                   child: TextFormField(
                     autovalidate: false,
+                    maxLength: 500,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),

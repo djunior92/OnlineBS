@@ -66,6 +66,7 @@ class _UsuarioPageState extends State<UsuarioPage> {
                     padding: const EdgeInsets.only(bottom: 10),
                     child: TextFormField(
                       autovalidate: false,
+                      maxLength: 30,
                       keyboardType: TextInputType.emailAddress,
                       initialValue: email,
                       decoration: InputDecoration(
@@ -86,6 +87,7 @@ class _UsuarioPageState extends State<UsuarioPage> {
                     child: TextFormField(
                       autovalidate: false,
                       obscureText: true,
+                      maxLength: 30,
                       initialValue: senha,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
@@ -115,6 +117,7 @@ class _UsuarioPageState extends State<UsuarioPage> {
                   padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: TextFormField(
                     autovalidate: false,
+                    maxLength: 100,
                     initialValue: nome,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -131,6 +134,7 @@ class _UsuarioPageState extends State<UsuarioPage> {
                   child: TextFormField(
                     autovalidate: false,
                     initialValue: cpfCnpj,
+                    maxLength: 14,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: 'CPF/CNPJ',
@@ -143,6 +147,7 @@ class _UsuarioPageState extends State<UsuarioPage> {
                   padding: const EdgeInsets.only(bottom: 10),
                   child: TextFormField(
                     autovalidate: false,
+                    maxLength: 100,
                     initialValue: endereco,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -156,6 +161,7 @@ class _UsuarioPageState extends State<UsuarioPage> {
                   padding: const EdgeInsets.only(bottom: 10),
                   child: TextFormField(
                     autovalidate: false,
+                    maxLength: 6,
                     initialValue: numero,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -169,6 +175,7 @@ class _UsuarioPageState extends State<UsuarioPage> {
                   padding: const EdgeInsets.only(bottom: 10),
                   child: TextFormField(
                     autovalidate: false,
+                    maxLength: 8,
                     initialValue: cep,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -182,6 +189,7 @@ class _UsuarioPageState extends State<UsuarioPage> {
                   padding: const EdgeInsets.only(bottom: 10),
                   child: TextFormField(
                     autovalidate: false,
+                    maxLength: 50,
                     initialValue: bairro,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -195,6 +203,7 @@ class _UsuarioPageState extends State<UsuarioPage> {
                   padding: const EdgeInsets.only(bottom: 10),
                   child: TextFormField(
                     autovalidate: false,
+                    maxLength: 14,
                     initialValue: telefone,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),

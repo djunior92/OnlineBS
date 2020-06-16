@@ -1,7 +1,7 @@
 library constants;
 
-const String SERVER_ADDRESS = "http://192.168.0.108"; 
-const String SERVER_PORT = ":5000";
+const String SERVER_ADDRESS = "https://onlinebs-api.herokuapp.com"; 
+const String SERVER_PORT = "";  //":5000";
 const String SERVER_CONTEXT = "";
 //const String SERVER_CONTEXT = "/api/v1";
 
