@@ -1,23 +1,26 @@
 import 'package:bsmobile/models/Anuncio.dart';
 import 'package:bsmobile/pages/widgets/CardInformation.dart';
+import 'package:bsmobile/pages/widgets/ShowWait.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'package:bsmobile/uteis/server.dart';
 
-class ConfirmaCompraPage extends StatefulWidget {
+class ConfirmaPedidoPage extends StatefulWidget {
   final Anuncio anuncio;
 
-  ConfirmaCompraPage({Key key, @required this.anuncio}) : super(key: key);
+  ConfirmaPedidoPage({Key key, @required this.anuncio}) : super(key: key);
 
   @override
-  _ConfirmaCompraPageState createState() => _ConfirmaCompraPageState();
+  _ConfirmaPedidoPageState createState() => _ConfirmaPedidoPageState();
 }
 
-class _ConfirmaCompraPageState extends State<ConfirmaCompraPage> {
-  int qtdCompra;
+class _ConfirmaPedidoPageState extends State<ConfirmaPedidoPage> {
+  int qtdPedido;
   bool solicitaEntrega = false;
 
   var _formKey = GlobalKey<FormState>();
@@ -41,10 +44,10 @@ class _ConfirmaCompraPageState extends State<ConfirmaCompraPage> {
     var preferences = await SharedPreferences.getInstance();
     var token = preferences.getString('token');
 
-    var response = await http.post(URL_POST_PEDIDO,
+    var response = await http.post(URL_PEDIDO,
         body: jsonEncode({
           'AnuncioId': widget.anuncio.id,
-          'Qtde': qtdCompra,
+          'Qtde': qtdPedido,
           'SolicitaEntrega': solicitaEntrega
         }),
         headers: {
@@ -53,6 +56,15 @@ class _ConfirmaCompraPageState extends State<ConfirmaCompraPage> {
         });
 
     return response.statusCode == 200 ? true : false;
+  }
+
+ String _formataReais(double oldValue) {
+    final formatter = new NumberFormat("#,##0.00", "pt_BR");
+    //final formatter = new NumberFormat.currency(locale: "pt_BR");
+
+    double initialValue = num.parse(oldValue.toStringAsPrecision(2));
+
+    return formatter.format(initialValue);
   }
 
   @override
@@ -108,7 +120,7 @@ class _ConfirmaCompraPageState extends State<ConfirmaCompraPage> {
                         style: TextStyle(fontSize: 14),
                       ),
                       subtitle: Text(
-                        widget.anuncio.valor.toString(),
+                        _formataReais(widget.anuncio.valor),
                         textAlign: TextAlign.center,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -165,10 +177,15 @@ class _ConfirmaCompraPageState extends State<ConfirmaCompraPage> {
                       labelText: 'Quantidade desejada',
                       hintText: 'Quantidade',
                     ),
-                    onSaved: (value) => qtdCompra = int.parse(value),
+                    onSaved: (value) => qtdPedido = int.parse(value),
                     validator: (value) =>
-                        (value.isEmpty || int.parse(value) <= 0) ? 'Campo Obrigatório' : null,
+                        (value.isEmpty || int.parse(value) <= 0)
+                            ? 'Campo Obrigatório'
+                            : null,
                     keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      WhitelistingTextInputFormatter.digitsOnly
+                    ],
                   ),
                 ),
                 Visibility(
@@ -207,19 +224,25 @@ class _ConfirmaCompraPageState extends State<ConfirmaCompraPage> {
                   buttonColor: Theme.of(context).primaryColor,
                   textTheme: ButtonTextTheme.primary,
                   child: RaisedButton(
-                    child: Text("Confirmar compra"),
+                    child: Text("Confirmar pedido"),
                     onPressed: () async {
                       if (_formKey.currentState.validate()) {
                         _formKey.currentState.save();
 
-                        if (qtdCompra <= widget.anuncio.qtdeDisponivel) {
-                          if (await _create())
+                        if (qtdPedido <= widget.anuncio.qtdeDisponivel) {
+                          showWait(context); //abre dialog wait
+                          bool result = await _create();
+                          Navigator.of(context, rootNavigator: true)
+                              .pop(true); //fecha dialog wait
+
+                          if (result)
                             Navigator.of(context).pop();
-                          else
+                          else {
                             _scaffoldKey.currentState.showSnackBar(SnackBar(
                               content: Text("Falha ao cadastrar"),
                               backgroundColor: Colors.red,
                             ));
+                          }
                         } else {
                           _scaffoldKey.currentState.showSnackBar(SnackBar(
                             content: Text("Quantidade disponível insuficiente"),

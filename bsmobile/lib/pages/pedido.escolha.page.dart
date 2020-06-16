@@ -3,16 +3,17 @@ import 'package:bsmobile/models/Anuncio.dart';
 import 'package:bsmobile/uteis/server.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:photo_view/photo_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'altera.anuncio.dart';
+import 'pedido.page.dart';
 
-class ListaAnuncioPage extends StatefulWidget {
+class PedidoEscolhaPage extends StatefulWidget {
   @override
-  _ListaAnuncioPageState createState() => _ListaAnuncioPageState();
+  _PedidoEscolhaPageState createState() => _PedidoEscolhaPageState();
 }
 
-class _ListaAnuncioPageState extends State<ListaAnuncioPage> {
+class _PedidoEscolhaPageState extends State<PedidoEscolhaPage> {
   var _formKey = GlobalKey<FormState>();
   Future<List> _future;
   String _pesquisa = "";
@@ -54,11 +55,11 @@ class _ListaAnuncioPageState extends State<ListaAnuncioPage> {
 
     //acessar a api:
     var response = await http.get(
-      URL_ANUNCIO,
+      URL_ANUNCIO + '/' + _pesquisa,
       headers: {'Authorization': 'Bearer $token'},
     );
 
-    if ((response.statusCode == 200)) {
+    if ((response.statusCode == 200) && (_pesquisa != "")) {
       var _lista = new List<Anuncio>();
 
       Iterable dados = jsonDecode(response.body);
@@ -74,11 +75,59 @@ class _ListaAnuncioPageState extends State<ListaAnuncioPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Anúncios cadastrados"), actions: []),
+      appBar: AppBar(title: Text("Procurar produtos"), actions: [
+      ]),
       body: Form(
         key: _formKey,
         child: Column(
           children: <Widget>[
+            Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 12,
+                  child: ListTile(
+                    title: Padding(
+                      padding: const EdgeInsets.only(
+                          top: 5, bottom: 5, left: 0, right: 0),
+                      child: TextFormField(
+                        autovalidate: false,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: '',
+                          labelText: 'O que você está procurando?',
+                        ),
+                        onSaved: (value) => _pesquisa = value,
+                        validator: (value) =>
+                            value.isEmpty ? 'Campo Obrigatório' : null,
+                      ),
+                    ),
+                    trailing: Padding(
+                      padding: const EdgeInsets.only(
+                          top: 0, bottom: 5, left: 0, right: 0),
+                      child: Wrap(
+                        spacing: 12,
+                        children: <Widget>[
+                          IconButton(
+                            icon: Icon(
+                              Icons.search,
+                              size: 40,
+                            ),
+                            onPressed: () {
+                              if (_formKey.currentState.validate()) {
+                                _formKey.currentState.save();
+                                setState(() {
+                                  _future = _loadData();
+                                });
+                              }
+                            },
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(
@@ -140,27 +189,20 @@ class _ListaAnuncioPageState extends State<ListaAnuncioPage> {
                                               child: Row(
                                                 children: <Widget>[
                                                   Expanded(
-                                                    flex: 1,
+                                                    flex: 3,
                                                     child: Container(
-                                                      alignment:
-                                                          Alignment.center,
-                                                      color: snapshot
+                                                      height: 95,
+                                                      width: 95,
+                                                      child: PhotoView(
+                                                          backgroundDecoration:
+                                                              BoxDecoration(
+                                                                  color: Colors
+                                                                      .transparent),
+                                                          imageProvider: MemoryImage(
+                                                              base64Decode(snapshot
                                                                   .data[
                                                                       position]
-                                                                  .qtdeDisponivel ==
-                                                              0
-                                                          ? Colors.red
-                                                          : Colors.green,
-                                                      child: Text(
-                                                        snapshot.data[position]
-                                                                    .qtdeDisponivel ==
-                                                                0
-                                                            ? 'D'
-                                                            : 'A',
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.white),
-                                                      ),
+                                                                  .foto))),
                                                     ),
                                                   ),
                                                   Expanded(
@@ -196,7 +238,7 @@ class _ListaAnuncioPageState extends State<ListaAnuncioPage> {
                                                         spacing: 12,
                                                         children: <Widget>[
                                                           Icon(Icons
-                                                              .arrow_forward),
+                                                              .arrow_forward)
                                                         ],
                                                       ),
                                                     ),
@@ -207,40 +249,13 @@ class _ListaAnuncioPageState extends State<ListaAnuncioPage> {
                                           ],
                                         ),
                                         onTap: () {
-                                          /*_showDialogInformation(
-                                              context,
-                                              '',
-                                              snapshot.data[position].titulo
-                                                  .toString());
-                                                  'anunciolista'*/
-
                                           Navigator.of(context).pushReplacement(
                                               MaterialPageRoute(
                                             builder: (context) =>
-                                                AlteraAnuncioPage(
+                                                PedidoPage(
                                                     anuncio: snapshot
                                                         .data[position]),
                                           ));
-                                          /*print("click");
-                                          Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  DenunciaView(
-                                                      protocolo:
-                                                          item.protocolo ?? '',
-                                                      tipo: item.tipo ?? '',
-                                                      descricao:
-                                                          item.descricao ?? '',
-                                                      status: item.status ?? '',
-                                                      msgfinal:
-                                                          item.msgfinal ?? '',
-                                                      anonima:
-                                                          item.anonima ?? 'N',
-                                                      endereco: item.local
-                                                              .toString() ??
-                                                          ''),
-                                            ),
-                                          );*/
                                         },
                                       );
                                     },

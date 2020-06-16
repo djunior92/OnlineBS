@@ -1,8 +1,10 @@
 import 'package:bsmobile/models/Anuncio.dart';
 import 'package:bsmobile/pages/widgets/CardInformation.dart';
+import 'package:bsmobile/pages/widgets/ShowWait.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
@@ -60,6 +62,15 @@ class _AlteraAnuncioPageState extends State<AlteraAnuncioPage> {
     return response.statusCode == 200 ? true : false;
   }
 
+  String _formataReais(double oldValue) {
+    final formatter = new NumberFormat("#,##0.00", "pt_BR");
+    //final formatter = new NumberFormat.currency(locale: "pt_BR");
+
+    double initialValue = num.parse(oldValue.toStringAsPrecision(2));
+
+    return formatter.format(initialValue);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,17 +96,32 @@ class _AlteraAnuncioPageState extends State<AlteraAnuncioPage> {
                           MemoryImage(base64Decode(widget.anuncio.foto))),
                 ),
                 CardInformation(
-                    cabecalho: 'Título', corpo: widget.anuncio.titulo, maxLnCorpo: 2),
+                    cabecalho: 'Título',
+                    corpo: widget.anuncio.titulo,
+                    maxLnCorpo: 2),
                 CardInformation(
-                    cabecalho: 'Descrição', corpo: widget.anuncio.descricao, maxLnCorpo: 3),
+                    cabecalho: 'Descrição',
+                    corpo: widget.anuncio.descricao,
+                    maxLnCorpo: 3),
                 CardInformation(
                     cabecalho: 'Valor do produto',
-                    corpo: widget.anuncio.valor.toString(), maxLnCorpo: 1),
+                    corpo: _formataReais(widget.anuncio.valor),
+                    maxLnCorpo: 1),
                 SizedBox(
                   height: 20,
                 ),
+                Text(
+                  '* Para desativar um anúncio é necessário zerar sua quantidade disponível *',
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 3,
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold),
+                ),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
+                  padding: const EdgeInsets.only(top: 10, bottom: 20),
                   child: TextFormField(
                     autovalidate: false,
                     initialValue: widget.anuncio.qtdeDisponivel.toString(),
@@ -140,23 +166,19 @@ class _AlteraAnuncioPageState extends State<AlteraAnuncioPage> {
                     onPressed: () async {
                       if (_formKey.currentState.validate()) {
                         _formKey.currentState.save();
+                        showWait(context); //abre dialog wait
+                        bool result = await _update();
+                        Navigator.of(context, rootNavigator: true)
+                            .pop(true); //fecha dialog wait
 
-                        if (await _update())
+                        if (result) {
                           Navigator.of(context).pop();
-                        else
+                        } else
                           _scaffoldKey.currentState.showSnackBar(SnackBar(
                             content: Text("Falha ao cadastrar"),
                             backgroundColor: Colors.red,
                           ));
                       }
-                      //TODO: Salvar dados na API
-                      /*_scaffoldKey.currentState.showSnackBar(SnackBar(
-                          content: Text("Classe:" +
-                              widget.anuncio.titulo +
-                              " - Edit:" +
-                              titulo),
-                          backgroundColor: Colors.red,
-                        ));*/
                     },
                   ),
                 ),

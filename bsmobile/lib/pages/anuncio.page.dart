@@ -1,3 +1,4 @@
+import 'package:bsmobile/pages/widgets/ShowWait.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -154,7 +155,7 @@ class _AnuncioPageState extends State<AnuncioPage> {
         //offset: Offset(-0.1, 0),
       );
 
-void _showDialogInformation(
+  void _showDialogInformation(
       BuildContext context, String title, String description) {
     // flutter defined function
     showDialog(
@@ -176,13 +177,13 @@ void _showDialogInformation(
         );
       },
     );
-  }        
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar( 
+      appBar: AppBar(
         title: Text('Cadastrar Anúncio'),
       ),
       body: SingleChildScrollView(
@@ -333,17 +334,23 @@ void _showDialogInformation(
                     onPressed: () async {
                       if (_formKey.currentState.validate()) {
                         _formKey.currentState.save();
-                       
+
                         if (imgRotated == null) {
-                          _showDialogInformation(context, "Atenção", "Insira uma imagem do produto");
-                        }else{
-                        if (await _create())
-                          Navigator.of(context).pop();
-                        else
-                          _scaffoldKey.currentState.showSnackBar(SnackBar(
-                            content: Text("Falha ao cadastrar"),
-                            backgroundColor: Colors.red,
-                          ));
+                          _showDialogInformation(context, "Atenção",
+                              "Insira uma imagem do produto");
+                        } else {
+                          showWait(context); //abre dialog wait
+                          bool result = await _create();
+                          Navigator.of(context, rootNavigator: true)
+                              .pop(true); //fecha dialog wait
+
+                          if (result)
+                            Navigator.of(context).pop();
+                          else
+                            _scaffoldKey.currentState.showSnackBar(SnackBar(
+                              content: Text("Falha ao cadastrar"),
+                              backgroundColor: Colors.red,
+                            ));
                         }
                       }
                     },

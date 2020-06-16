@@ -1,26 +1,36 @@
 import 'package:bsmobile/models/Anuncio.dart';
 import 'package:bsmobile/pages/widgets/CardInformation.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:photo_view/photo_view.dart';
 import 'dart:convert';
 
-import 'compra.confirma.dart';
+import 'pedido.confirma.dart';
 
-class CompraPage extends StatefulWidget {
+class PedidoPage extends StatefulWidget {
   final Anuncio anuncio;
 
-  CompraPage({Key key, @required this.anuncio}) : super(key: key);
+  PedidoPage({Key key, @required this.anuncio}) : super(key: key);
 
   @override
-  _CompraPageState createState() => _CompraPageState();
+  _PedidoPageState createState() => _PedidoPageState();
 }
 
-class _CompraPageState extends State<CompraPage> {
+ String _formataReais(double oldValue) {
+    final formatter = new NumberFormat("#,##0.00", "pt_BR");
+    //final formatter = new NumberFormat.currency(locale: "pt_BR");
+
+    double initialValue = num.parse(oldValue.toStringAsPrecision(2));
+
+    return formatter.format(initialValue);
+  }
+
+class _PedidoPageState extends State<PedidoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Comprar'),
+        title: Text('Pedido'),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -67,7 +77,7 @@ class _CompraPageState extends State<CompraPage> {
                         style: TextStyle(fontSize: 14),
                       ),
                       subtitle: Text(
-                        widget.anuncio.valor.toString(),
+                        _formataReais(widget.anuncio.valor),
                         textAlign: TextAlign.center,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -141,7 +151,7 @@ class _CompraPageState extends State<CompraPage> {
                      Navigator.of(context).pushReplacement(
                                               MaterialPageRoute(
                                             builder: (context) =>
-                                                ConfirmaCompraPage(
+                                                ConfirmaPedidoPage(
                                                     anuncio: widget.anuncio)
                                           ));
                      

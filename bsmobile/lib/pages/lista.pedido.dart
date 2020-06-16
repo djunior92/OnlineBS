@@ -1,22 +1,20 @@
 import 'dart:convert';
-import 'package:bsmobile/models/Anuncio.dart';
+import 'package:bsmobile/models/Pedido.dart';
+import 'package:bsmobile/pages/pedido.detalhe.dart';
 import 'package:bsmobile/uteis/server.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:photo_view/photo_view.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'compra.page.dart';
-
-class CompraEscolhaPage extends StatefulWidget {
+class ListaPedidoPage extends StatefulWidget {
   @override
-  _CompraEscolhaPageState createState() => _CompraEscolhaPageState();
+  _ListaPedidoPageState createState() => _ListaPedidoPageState();
 }
 
-class _CompraEscolhaPageState extends State<CompraEscolhaPage> {
+class _ListaPedidoPageState extends State<ListaPedidoPage> {
   var _formKey = GlobalKey<FormState>();
   Future<List> _future;
-  String _pesquisa = "";
 
   @override
   initState() {
@@ -24,47 +22,32 @@ class _CompraEscolhaPageState extends State<CompraEscolhaPage> {
     _future = _loadData();
   }
 
-  void _showDialogInformation(
-      BuildContext context, String title, String description) {
-    // flutter defined function
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        // return object of type Dialog
-        return AlertDialog(
-          title: new Text(title),
-          content: new Text(description),
-          actions: <Widget>[
-            // usually buttons at the bottom of the dialog
-            new FlatButton(
-              child: new Text("OK"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
+  String _formataReais(double oldValue) {
+    final formatter = new NumberFormat("#,##0.00", "pt_BR");
+    //final formatter = new NumberFormat.currency(locale: "pt_BR");
+
+    double initialValue = num.parse(oldValue.toStringAsPrecision(2));
+
+    return formatter.format(initialValue);
   }
 
-  Future<List<Anuncio>> _loadData() async {
+  Future<List<Pedido>> _loadData() async {
     //recuperar o token
     var preferences = await SharedPreferences.getInstance();
     final String token = preferences.getString('token');
 
     //acessar a api:
     var response = await http.get(
-      URL_ANUNCIO + '/' + _pesquisa,
+      URL_PEDIDO,
       headers: {'Authorization': 'Bearer $token'},
     );
 
-    if ((response.statusCode == 200) && (_pesquisa != "")) {
-      var _lista = new List<Anuncio>();
+    if ((response.statusCode == 200)) {
+      var _lista = new List<Pedido>();
 
       Iterable dados = jsonDecode(response.body);
       for (var item in dados) {
-        _lista.add(Anuncio.fromJson(item));
+        _lista.add(Pedido.fromJson(item));
       }
       return _lista;
     } else {
@@ -75,59 +58,11 @@ class _CompraEscolhaPageState extends State<CompraEscolhaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Procurar produtos"), actions: [
-      ]),
+      appBar: AppBar(title: Text("Pedidos realizados"), actions: []),
       body: Form(
         key: _formKey,
         child: Column(
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Expanded(
-                  flex: 12,
-                  child: ListTile(
-                    title: Padding(
-                      padding: const EdgeInsets.only(
-                          top: 5, bottom: 5, left: 0, right: 0),
-                      child: TextFormField(
-                        autovalidate: false,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: '',
-                          labelText: 'O que você está procurando?',
-                        ),
-                        onSaved: (value) => _pesquisa = value,
-                        validator: (value) =>
-                            value.isEmpty ? 'Campo Obrigatório' : null,
-                      ),
-                    ),
-                    trailing: Padding(
-                      padding: const EdgeInsets.only(
-                          top: 0, bottom: 5, left: 0, right: 0),
-                      child: Wrap(
-                        spacing: 12,
-                        children: <Widget>[
-                          IconButton(
-                            icon: Icon(
-                              Icons.search,
-                              size: 40,
-                            ),
-                            onPressed: () {
-                              if (_formKey.currentState.validate()) {
-                                _formKey.currentState.save();
-                                setState(() {
-                                  _future = _loadData();
-                                });
-                              }
-                            },
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(
@@ -188,29 +123,36 @@ class _CompraEscolhaPageState extends State<CompraEscolhaPage> {
                                             Card(
                                               child: Row(
                                                 children: <Widget>[
-                                                  Expanded(
-                                                    flex: 3,
+                                                  /*Expanded(
+                                                    flex: 1,
                                                     child: Container(
-                                                      height: 95,
-                                                      width: 95,
-                                                      child: PhotoView(
-                                                          backgroundDecoration:
-                                                              BoxDecoration(
-                                                                  color: Colors
-                                                                      .transparent),
-                                                          imageProvider: MemoryImage(
-                                                              base64Decode(snapshot
+                                                      alignment:
+                                                          Alignment.center,
+                                                      color: snapshot
                                                                   .data[
                                                                       position]
-                                                                  .foto))),
+                                                                  .qtde ==
+                                                              0
+                                                          ? Colors.red
+                                                          : Colors.green,
+                                                      child: Text(
+                                                        snapshot.data[position]
+                                                                    .qtde ==
+                                                                0
+                                                            ? 'F'
+                                                            : 'A',
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.white),
+                                                      ),
                                                     ),
-                                                  ),
+                                                  ),*/
                                                   Expanded(
                                                     flex: 12,
                                                     child: ListTile(
                                                       title: Text(
                                                         snapshot.data[position]
-                                                            .titulo,
+                                                            .anuncio.titulo,
                                                         textAlign:
                                                             TextAlign.left,
                                                         maxLines: 2,
@@ -224,7 +166,17 @@ class _CompraEscolhaPageState extends State<CompraEscolhaPage> {
                                                       ),
                                                       subtitle: Text(
                                                         snapshot.data[position]
-                                                            .descricao,
+                                                                .dataPedido +
+                                                            " - Total: " +
+                                                            _formataReais(snapshot
+                                                                    .data[
+                                                                        position]
+                                                                    .qtde *
+                                                                snapshot
+                                                                    .data[
+                                                                        position]
+                                                                    .anuncio
+                                                                    .valor),
                                                         textAlign:
                                                             TextAlign.left,
                                                         maxLines: 2,
@@ -238,7 +190,7 @@ class _CompraEscolhaPageState extends State<CompraEscolhaPage> {
                                                         spacing: 12,
                                                         children: <Widget>[
                                                           Icon(Icons
-                                                              .arrow_forward)
+                                                              .arrow_forward),
                                                         ],
                                                       ),
                                                     ),
@@ -249,11 +201,11 @@ class _CompraEscolhaPageState extends State<CompraEscolhaPage> {
                                           ],
                                         ),
                                         onTap: () {
-                                          Navigator.of(context).pushReplacement(
+                                          Navigator.of(context).push(
                                               MaterialPageRoute(
                                             builder: (context) =>
-                                                CompraPage(
-                                                    anuncio: snapshot
+                                                PedidoDetalhePage(
+                                                    pedido: snapshot
                                                         .data[position]),
                                           ));
                                         },

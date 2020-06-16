@@ -1,3 +1,5 @@
+import 'package:bsmobile/pages/usuario.page.dart';
+import 'package:bsmobile/pages/widgets/ShowWait.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -38,7 +40,7 @@ class LoginPage extends StatelessWidget {
 
   _login(BuildContext context) async {
     try {
-      var response = await http.post(URL_POST_LOGIN,
+      var response = await http.post(URL_LOGIN,
           body: jsonEncode({'email': email, 'senha': senha}),
           headers: {'Content-Type': 'application/json; charset=utf-8'});
 
@@ -161,7 +163,13 @@ class LoginPage extends StatelessWidget {
                       child: Text('Ainda não tem conta? Cadastre-se!',
                           style: TextStyle(fontSize: 16, color: Colors.grey)),
                       onTap: () {
-                        Navigator.of(context).pushNamed('/usuario');
+                        //Navigator.of(context).pushNamed('/usuario');
+                         Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                            builder: (context) =>
+                                                UsuarioPage(
+                                                    novoCadastro: true,
+                                          )));
                       }),
                 ),
               ],

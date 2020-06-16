@@ -1,3 +1,4 @@
+import 'package:bsmobile/pages/usuario.page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,7 +10,7 @@ class MenuPage extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-  }
+  } 
 
   Future<void> _logout(BuildContext context) async {
     var preferences = await SharedPreferences.getInstance();
@@ -72,7 +73,7 @@ class MenuPage extends StatelessWidget {
                           children: <Widget>[
                             GestureDetector(
                               onTap: () {
-                                Navigator.of(context).pushNamed('/compraescolha');
+                                Navigator.of(context).pushNamed('/pedidoescolha');
                               },
                               child: Container(
                                 width: 110,
@@ -108,7 +109,7 @@ class MenuPage extends StatelessWidget {
                                     image: DecorationImage(
                                   fit: BoxFit.fitWidth,
                                   image:
-                                      AssetImage('assets/images/findAnuncio.png'),
+                                      AssetImage('assets/images/findAnuncio.png'), 
                                 )),
                               ),
                             ),
@@ -119,7 +120,7 @@ class MenuPage extends StatelessWidget {
                           children: <Widget>[
                             GestureDetector(
                               onTap: () {
-                                Navigator.of(context).pushNamed('/lista');
+                                Navigator.of(context).pushNamed('/pedidolista');
                               },
                               child: Container(
                                 width: 100,
@@ -132,7 +133,7 @@ class MenuPage extends StatelessWidget {
                                 )),
                               ),
                             ),
-                            Text('Compras Realizadas')
+                            Text('Pedidos Realizados')
                           ],
                         ),
                       ],
@@ -147,7 +148,13 @@ class MenuPage extends StatelessWidget {
                           children: <Widget>[
                             GestureDetector(
                               onTap: () {
-                                //Navigator.of(context).pushNamed('/perfil');
+                                //Navigator.of(context).pushNamed('/usuario');
+                                Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                            builder: (context) =>
+                                                UsuarioPage(
+                                                    novoCadastro: false, //alterando
+                                          )));
                               },
                               child: Container(
                                 width: 100,
