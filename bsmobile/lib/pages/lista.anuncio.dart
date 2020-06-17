@@ -23,7 +23,7 @@ class _ListaAnuncioPageState extends State<ListaAnuncioPage> {
     _future = _loadData();
   }
 
-  void _showDialogInformation(
+  /*void _showDialogInformation(
       BuildContext context, String title, String description) {
     // flutter defined function
     showDialog(
@@ -45,7 +45,7 @@ class _ListaAnuncioPageState extends State<ListaAnuncioPage> {
         );
       },
     );
-  }
+  }*/
 
   Future<List<Anuncio>> _loadData() async {
     //recuperar o token

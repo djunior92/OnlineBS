@@ -43,8 +43,8 @@ namespace BSBackEnd
 
 
             ///*Local*/services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase("BDOnlineBS"));
-            /*PostgreSQL*/services.AddDbContext<DataContext>(options => options.UseNpgsql(Configuration.GetConnectionString("Heroku")));  
-            ///*SQL SERVER*/services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BDSQLSERVER")));
+            ///*PostgreSQL*/services.AddDbContext<DataContext>(options => options.UseNpgsql(Configuration.GetConnectionString("Heroku")));  
+            /*SQL SERVER*/services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BDSQLSERVER")));
             
             //services.AddSingleton - por aplicação
             //services.AddTransient - por transação 

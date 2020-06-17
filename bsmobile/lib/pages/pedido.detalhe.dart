@@ -1,4 +1,5 @@
 import 'package:bsmobile/models/Pedido.dart';
+import 'package:bsmobile/pages/widgets/CardEndereco.dart';
 import 'package:bsmobile/pages/widgets/CardInformation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -9,8 +10,13 @@ import 'pedido.confirma.dart';
 
 class PedidoDetalhePage extends StatefulWidget {
   final Pedido pedido;
+  final bool listaCompra;
 
-  PedidoDetalhePage({Key key, @required this.pedido}) : super(key: key);
+  PedidoDetalhePage({
+    Key key,
+    @required this.pedido,
+    @required this.listaCompra
+  }) : super(key: key);
 
   @override
   _PedidoDetalhePageState createState() => _PedidoDetalhePageState();
@@ -150,7 +156,7 @@ class _PedidoDetalhePageState extends State<PedidoDetalhePage> {
                         Expanded(
                           child: ListTile(
                             title: Text(
-                              'Você solicitou a entrega do produto',
+                              (widget.listaCompra ? 'Você solicitou a entrega do produto' : 'Cliente solicitou a entrega do produto'),
                               textAlign: TextAlign.left,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
@@ -224,6 +230,10 @@ class _PedidoDetalhePageState extends State<PedidoDetalhePage> {
                     ),
                   ),
                 ),
+                CardEndereco(
+                  idPessoa: (widget.listaCompra ? widget.pedido.anuncio.vendedorId : widget.pedido.compradorId),
+                  textoTitulo: (widget.listaCompra ? "Dados do Vendedor" : "Dados do Comprador"),
+                  exibirEndereco: (widget.listaCompra ? !widget.pedido.solicitaEntrega : widget.pedido.solicitaEntrega),),
                 SizedBox(
                   height: 20,
                 ),

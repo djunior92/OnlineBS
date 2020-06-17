@@ -148,6 +148,26 @@ class MenuPage extends StatelessWidget {
                           children: <Widget>[
                             GestureDetector(
                               onTap: () {
+                                Navigator.of(context).pushNamed('/vendalista');
+                              },
+                              child: Container(
+                                width: 100,
+                                height: 120,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      fit: BoxFit.fitWidth,
+                                      image:
+                                      AssetImage('assets/images/sales.png'),
+                                    )),
+                              ),
+                            ),
+                            Text('Vendas Realizadas')
+                          ],
+                        ),
+                        Column(
+                          children: <Widget>[
+                            GestureDetector(
+                              onTap: () {
                                 //Navigator.of(context).pushNamed('/usuario');
                                 Navigator.of(context).push(
                                               MaterialPageRoute(
@@ -156,6 +176,9 @@ class MenuPage extends StatelessWidget {
                                                     novoCadastro: false, //alterando
                                           )));
                               },
+                              /*onTap: () {
+                                Navigator.of(context).pushNamed('/perfil');
+                              },*/
                               child: Container(
                                 width: 100,
                                 height: 120,

@@ -1,4 +1,6 @@
 import 'package:bsmobile/models/Anuncio.dart';
+import 'package:bsmobile/models/Usuario.dart';
+import 'package:bsmobile/pages/widgets/CardEndereco.dart';
 import 'package:bsmobile/pages/widgets/CardInformation.dart';
 import 'package:bsmobile/pages/widgets/ShowWait.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +25,8 @@ class _ConfirmaPedidoPageState extends State<ConfirmaPedidoPage> {
   int qtdPedido;
   bool solicitaEntrega = false;
 
+  String erro = "Falha ao cadastrar";
+
   var _formKey = GlobalKey<FormState>();
   var _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -44,6 +48,15 @@ class _ConfirmaPedidoPageState extends State<ConfirmaPedidoPage> {
     var preferences = await SharedPreferences.getInstance();
     var token = preferences.getString('token');
 
+    if (solicitaEntrega) {
+      bool result = await _verificaUsuarioEndereco(token);
+      if (!result) {
+        erro =
+        "É necessário atualizar os dados de endereço de seu usuário para realizar a compra com entrega solicitada!";
+        return result;
+      }
+    }
+
     var response = await http.post(URL_PEDIDO,
         body: jsonEncode({
           'AnuncioId': widget.anuncio.id,
@@ -56,6 +69,28 @@ class _ConfirmaPedidoPageState extends State<ConfirmaPedidoPage> {
         });
 
     return response.statusCode == 200 ? true : false;
+  }
+
+  Future<bool> _verificaUsuarioEndereco(String token) async {
+    //acessar a api:
+    var response = await http.get(URL_USUARIO,
+      headers: {'Authorization': 'Bearer $token'},
+    );
+
+    if(response.statusCode == 200){
+      Map<String, dynamic> dados = Map<String, dynamic>.from(jsonDecode(response.body));
+      Usuario _usuario = Usuario.fromJson(dados);
+      if (_usuario == null ||_usuario.endereco == null || _usuario.numero == null ||
+          _usuario.cep == null || _usuario.bairro == null) {
+        return false;
+      } else if (_usuario.endereco.isEmpty || _usuario.numero.isEmpty ||
+          _usuario.cep.isEmpty || _usuario.bairro.isEmpty) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+    return false;
   }
 
  String _formataReais(double oldValue) {
@@ -159,6 +194,11 @@ class _ConfirmaPedidoPageState extends State<ConfirmaPedidoPage> {
                     ],
                   ),
                 ),
+                CardEndereco(
+                  idPessoa: widget.anuncio.vendedorId,
+                  textoTitulo: "Dados do Vendedor",
+                  exibirEndereco: !widget.anuncio.realizaEntrega || !solicitaEntrega,
+                ),
                 SizedBox(
                   height: 40,
                 ),
@@ -239,7 +279,7 @@ class _ConfirmaPedidoPageState extends State<ConfirmaPedidoPage> {
                             Navigator.of(context).pop();
                           else {
                             _scaffoldKey.currentState.showSnackBar(SnackBar(
-                              content: Text("Falha ao cadastrar"),
+                              content: Text(erro),
                               backgroundColor: Colors.red,
                             ));
                           }

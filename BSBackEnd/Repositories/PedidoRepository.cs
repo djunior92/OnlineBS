@@ -9,6 +9,7 @@ namespace BSBackEnd.Repositories
     public interface IPedidoRepository
     {
         List<Pedido> Read(Guid Id);
+        List<Pedido> ReadVendas(Guid Id);
         void Create(Pedido pedido);
         void Delete(Guid Id);
         void Update(Guid id, Pedido pedido);
@@ -51,6 +52,13 @@ namespace BSBackEnd.Repositories
             //return _context.Pedidos.Where(Pedido => Pedido.CompradorId == Id).ToList();             
             //var product = await context.Products.Include(x => x.Category).FirstOrDefaultAsync(x => x.Id == id);   exemplo
             return _context.Pedidos.Include(x => x.Anuncio).OrderByDescending(p => p.DataPedido).ToList();
+        }
+
+        public List<Pedido> ReadVendas(Guid Id)
+        {
+            //return _context.Pedidos.Include(x => x.Anuncio).OrderByDescending(p => p.DataPedido).ToList();
+            return _context.Pedidos.Include(x => x.Anuncio)
+            .Where(pedido => pedido.Anuncio.VendedorId == Id).ToList();
         }
 
         public void Update(Guid id, Pedido pedido)

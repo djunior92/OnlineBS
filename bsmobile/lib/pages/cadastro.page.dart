@@ -15,7 +15,7 @@ class CadastroPage extends StatelessWidget {
 
     //acessar a api:
     var response = await http.post(
-    'http://localhost:5000/anuncio/', 
+    'http://192.168.0.105:5000/anuncio/',
     body: jsonEncode({"nome": nome}),
     headers: {
       'Content-Type': 'application/json; charset=utf-8',

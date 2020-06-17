@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:bsmobile/uteis/server.dart';
 
-void _showDialogInformation(
+/*void _showDialogInformation(
     BuildContext context, String title, String description) {
   // flutter defined function
   showDialog(
@@ -29,7 +29,7 @@ void _showDialogInformation(
       );
     },
   );
-}
+}*/
 
 class LoginPage extends StatelessWidget {
   var _formKey = GlobalKey<FormState>();
@@ -38,11 +38,13 @@ class LoginPage extends StatelessWidget {
   String email;
   String senha;
 
-  _login(BuildContext context) async {
+  /*_login(BuildContext context) async {
     try {
+      showWait(context);
       var response = await http.post(URL_LOGIN,
           body: jsonEncode({'email': email, 'senha': senha}),
           headers: {'Content-Type': 'application/json; charset=utf-8'});
+      Navigator.of(context).pop();
 
       if (response.statusCode == 200) {
         var token = jsonDecode(response.body)['token'];
@@ -66,6 +68,35 @@ class LoginPage extends StatelessWidget {
       _showDialogInformation(
           context, 'Erro', e.toString());
     }
+  }*/
+  Future<bool> _login() async {
+    var result = false;
+    try {
+      var response = await http.post(URL_LOGIN,
+          body: jsonEncode({'email': email, 'senha': senha}),
+          headers: {'Content-Type': 'application/json; charset=utf-8'});
+
+      if (response.statusCode == 200) {
+        var token = jsonDecode(response.body)['token'];
+        var preferences = await SharedPreferences.getInstance();
+        preferences.setString('token', token);
+        result = true;
+
+      } else if (response.statusCode == 401) {
+        _scaffoldKey.currentState.showSnackBar(SnackBar(
+          content: Text(
+              "Email e/ou senha inválidos. Verifique os dados informados."),
+          backgroundColor: Colors.red,
+        ));
+      }
+    } catch (e) {
+      _scaffoldKey.currentState.showSnackBar(SnackBar(
+        content: Text(
+            "Erro: "+"Não foi possível conectar ao servidor."),
+        backgroundColor: Colors.red,
+      ));
+    }
+    return result;
   }
 
   @override
@@ -138,7 +169,7 @@ class LoginPage extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                ButtonTheme(
+                /*ButtonTheme(
                   minWidth: double.infinity,
                   buttonColor: Theme.of(context).primaryColor,
                   textTheme: ButtonTextTheme.primary,
@@ -150,6 +181,28 @@ class LoginPage extends StatelessWidget {
                         //TODO: Salvar dados na API
                         _login(context);
                         //Navigator.of(context).pop();
+                      }
+                    },
+                  ),
+                ),*/
+                ButtonTheme(
+                  minWidth: double.infinity,
+                  buttonColor: Theme.of(context).primaryColor,
+                  textTheme: ButtonTextTheme.primary,
+                  child: RaisedButton(
+                    child: Text("Entrar"),
+                    onPressed: () async {
+                      if (_formKey.currentState.validate()) {
+                        _formKey.currentState.save();
+                        //TODO: Salvar dados na API
+
+                        showWait(context); //abre dialog wait
+                        bool result = await _login();
+                        Navigator.of(context, rootNavigator: true)
+                            .pop(true); //fecha dialog wait
+                        if (result)
+                          Navigator.of(context).pushReplacementNamed(
+                              '/menu'); //deixando como "tela principal"
                       }
                     },
                   ),

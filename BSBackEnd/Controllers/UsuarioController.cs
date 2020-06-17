@@ -26,6 +26,22 @@ namespace BSBackEnd.Controllers
             return Ok();
         }
 
+        [HttpGet]
+        public IActionResult Read([FromServices]IUsuarioRepository repository)
+        {
+            var Id = new Guid(User.Identity.Name);
+
+            var usuario = repository.Read(Id);
+            return Ok(usuario);
+        } 
+
+        [HttpGet("{id}")]
+        public IActionResult Read(string id, [FromServices]IUsuarioRepository repository)
+        {
+            var usuario = repository.Read(new Guid(id));
+            return Ok(usuario);
+        } 
+
         [HttpPost]
         [Route("login")]
         public IActionResult Login([FromBody] UsuarioLogin model, [FromServices] IUsuarioRepository repository)

@@ -2,6 +2,7 @@ import 'package:bsmobile/pages/altera.anuncio.dart';
 import 'package:bsmobile/pages/anuncio.page.dart';
 import 'package:bsmobile/pages/lista.anuncio.dart';
 import 'package:bsmobile/pages/lista.pedido.dart';
+import 'package:bsmobile/pages/lista.vendas.dart';
 import 'package:bsmobile/pages/menu.page.dart';
 import 'package:bsmobile/pages/pedido.confirma.dart';
 import 'package:bsmobile/pages/pedido.detalhe.dart';
@@ -30,9 +31,11 @@ class App extends StatelessWidget {
     '/pedido': (context) => PedidoPage(anuncio: null,),
     '/pedidodetalhe': (context) => PedidoDetalhePage(pedido: null,),
     '/pedidolista': (context) => ListaPedidoPage(),
+    '/vendalista': (context) => ListaVendaPage(),
     '/anunciolista': (context) => ListaAnuncioPage(),
     '/anuncioaltera': (context) => AlteraAnuncioPage(anuncio: null,),
     '/confirmapedido': (context) => ConfirmaPedidoPage(anuncio: null,),
+    //'/perfil': (context) => PerfilPage(),
   };
 
     return MaterialApp(

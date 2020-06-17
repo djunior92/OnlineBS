@@ -1,3 +1,4 @@
+import 'package:bsmobile/models/Usuario.dart';
 import 'package:bsmobile/pages/widgets/ShowWait.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,6 +25,8 @@ class _AnuncioPageState extends State<AnuncioPage> {
   var _formKey = GlobalKey<FormState>();
   var _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  String erro = "Falha ao cadastrar";
+
   int turn = 0;
   List<int> _image;
   List<int> imgRotated;
@@ -37,6 +40,12 @@ class _AnuncioPageState extends State<AnuncioPage> {
   Future<bool> _create() async {
     var preferences = await SharedPreferences.getInstance();
     var token = preferences.getString('token');
+
+    bool result = await _verificaUsuarioEndereco(token);
+    if (!result) {
+      erro = "É necessário atualizar os dados de endereço de seu usuário para cadastrar um anúncio!";
+      return result;
+    }
 
     var response = await http.post(URL_ANUNCIO,
         body: jsonEncode({
@@ -53,6 +62,28 @@ class _AnuncioPageState extends State<AnuncioPage> {
         });
 
     return response.statusCode == 200 ? true : false;
+  }
+
+  Future<bool> _verificaUsuarioEndereco(String token) async {
+    //acessar a api:
+    var response = await http.get(URL_USUARIO,
+      headers: {'Authorization': 'Bearer $token'},
+    );
+
+    if(response.statusCode == 200){
+      Map<String, dynamic> dados = Map<String, dynamic>.from(jsonDecode(response.body));
+      Usuario _usuario = Usuario.fromJson(dados);
+      if (_usuario == null ||_usuario.endereco == null || _usuario.numero == null ||
+          _usuario.cep == null || _usuario.bairro == null) {
+        return false;
+      } else if (_usuario.endereco.isEmpty || _usuario.numero.isEmpty ||
+          _usuario.cep.isEmpty || _usuario.bairro.isEmpty) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+    return false;
   }
 
   Future<void> showImgDialog() async {
@@ -350,7 +381,7 @@ class _AnuncioPageState extends State<AnuncioPage> {
                             Navigator.of(context).pop();
                           else
                             _scaffoldKey.currentState.showSnackBar(SnackBar(
-                              content: Text("Falha ao cadastrar"),
+                              content: Text(erro),
                               backgroundColor: Colors.red,
                             ));
                         }

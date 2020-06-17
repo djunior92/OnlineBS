@@ -9,6 +9,7 @@ namespace BSBackEnd.Repositories
     {
         Usuario Read(string email, string senha);
         void Create(Usuario usuario);
+        Usuario Read(Guid id);
         void Update(Guid id, Usuario usuario);
     }
 
@@ -35,17 +36,24 @@ namespace BSBackEnd.Repositories
             );
         }
 
+        public Usuario Read(Guid id)
+        {
+            return _context.Usuarios.Find(id);
+        }
+
         public void Update(Guid id, Usuario usuario)
         {
             var _usuario = _context.Usuarios.Find(id);
 
-            _usuario.Nome = _usuario.Nome;
-            _usuario.CpfCnpj = _usuario.CpfCnpj;
-            _usuario.Endereco = _usuario.Endereco;
-            _usuario.Numero = _usuario.Numero;
-            _usuario.Cep = _usuario.Cep;
-            _usuario.Bairro = _usuario.Bairro;
-            _usuario.Telefone = _usuario.Telefone;
+            _usuario.Email = usuario.Email;
+            _usuario.Senha = usuario.Senha;
+            _usuario.Nome = usuario.Nome;
+            _usuario.CpfCnpj = usuario.CpfCnpj;
+            _usuario.Endereco = usuario.Endereco;
+            _usuario.Numero = usuario.Numero;
+            _usuario.Cep = usuario.Cep;
+            _usuario.Bairro = usuario.Bairro;
+            _usuario.Telefone = usuario.Telefone;
 
             _context.Entry(_usuario).State = EntityState.Modified;
             _context.SaveChanges();

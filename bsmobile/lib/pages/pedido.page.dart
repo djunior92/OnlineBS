@@ -1,4 +1,5 @@
 import 'package:bsmobile/models/Anuncio.dart';
+import 'package:bsmobile/pages/widgets/CardEndereco.dart';
 import 'package:bsmobile/pages/widgets/CardInformation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -137,6 +138,7 @@ class _PedidoPageState extends State<PedidoPage> {
                     ],
                   ),
                 ),
+                CardEndereco(idPessoa: widget.anuncio.vendedorId, textoTitulo: "Dados do Vendedor", exibirEndereco: !widget.anuncio.realizaEntrega,),
                 SizedBox(
                   height: 20,
                 ),

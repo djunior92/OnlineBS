@@ -7,12 +7,12 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ListaPedidoPage extends StatefulWidget {
+class ListaVendaPage extends StatefulWidget {
   @override
-  _ListaPedidoPageState createState() => _ListaPedidoPageState();
+  _ListaVendaPageState createState() => _ListaVendaPageState();
 }
 
-class _ListaPedidoPageState extends State<ListaPedidoPage> {
+class _ListaVendaPageState extends State<ListaVendaPage> {
   var _formKey = GlobalKey<FormState>();
   Future<List> _future;
 
@@ -38,7 +38,7 @@ class _ListaPedidoPageState extends State<ListaPedidoPage> {
 
     //acessar a api:
     var response = await http.get(
-      URL_PEDIDO,
+      URL_VENDAS,
       headers: {'Authorization': 'Bearer $token'},
     );
 
@@ -58,7 +58,7 @@ class _ListaPedidoPageState extends State<ListaPedidoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Pedidos realizados"), actions: []),
+      appBar: AppBar(title: Text("Vendas realizadas"), actions: []),
       body: Form(
         key: _formKey,
         child: Column(
@@ -78,7 +78,7 @@ class _ListaPedidoPageState extends State<ListaPedidoPage> {
                               width: MediaQuery.of(context).size.width,
                               height: MediaQuery.of(context).size.width,
                               child:
-                                  Center(child: CircularProgressIndicator()));
+                              Center(child: CircularProgressIndicator()));
                         case ConnectionState.done:
                           if (snapshot.data == null ||
                               snapshot.data.length == 0 ||
@@ -154,31 +154,31 @@ class _ListaPedidoPageState extends State<ListaPedidoPage> {
                                                         snapshot.data[position]
                                                             .anuncio.titulo,
                                                         textAlign:
-                                                            TextAlign.left,
+                                                        TextAlign.left,
                                                         maxLines: 2,
                                                         overflow: TextOverflow
                                                             .ellipsis,
                                                         style: TextStyle(
                                                             fontSize: 20,
                                                             fontWeight:
-                                                                FontWeight
-                                                                    .bold),
+                                                            FontWeight
+                                                                .bold),
                                                       ),
                                                       subtitle: Text(
                                                         snapshot.data[position]
-                                                                .dataPedido +
+                                                            .dataPedido +
                                                             " - Total: " +
                                                             _formataReais(snapshot
-                                                                    .data[
-                                                                        position]
-                                                                    .qtde *
+                                                                .data[
+                                                            position]
+                                                                .qtde *
                                                                 snapshot
                                                                     .data[
-                                                                        position]
+                                                                position]
                                                                     .anuncio
                                                                     .valor),
                                                         textAlign:
-                                                            TextAlign.left,
+                                                        TextAlign.left,
                                                         maxLines: 2,
                                                         overflow: TextOverflow
                                                             .ellipsis,
@@ -203,12 +203,12 @@ class _ListaPedidoPageState extends State<ListaPedidoPage> {
                                         onTap: () {
                                           Navigator.of(context).push(
                                               MaterialPageRoute(
-                                            builder: (context) =>
-                                                PedidoDetalhePage(
-                                                    pedido: snapshot
-                                                        .data[position],
-                                                    listaCompra: true,),
-                                          ));
+                                                builder: (context) =>
+                                                    PedidoDetalhePage(
+                                                        pedido: snapshot
+                                                            .data[position],
+                                                        listaCompra: false),
+                                              ));
                                         },
                                       );
                                     },

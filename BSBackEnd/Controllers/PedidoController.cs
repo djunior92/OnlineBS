@@ -21,6 +21,14 @@ namespace BSBackEnd.Controllers
             return Ok(pedidos);
         }
 
+        [HttpGet("vendas")]
+        public IActionResult ReadVendas([FromServices] IPedidoRepository repository)
+        {
+            var Id = new Guid(User.Identity.Name);
+            var pedidos = repository.ReadVendas(Id);
+            return Ok(pedidos);
+        }
+
         [HttpPost]
         public IActionResult Create([FromBody] Pedido model, [FromServices] IPedidoRepository repository)
         {

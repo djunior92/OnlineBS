@@ -14,7 +14,7 @@ class ListaPage extends StatefulWidget {
 class _ListaPageState extends State<ListaPage> {
   List<Tarefa> tarefas = new List<Tarefa>();
   
-  final String url = 'http://localhost:5000/anuncio';
+  final String url = 'http://192.168.0.105:5000/anuncio';
 
   Future<void> _loadData() async {
     //recuperar o token
