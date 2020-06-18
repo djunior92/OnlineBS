@@ -98,11 +98,11 @@ class _AlteraAnuncioPageState extends State<AlteraAnuncioPage> {
                 CardInformation(
                     cabecalho: 'Título',
                     corpo: widget.anuncio.titulo,
-                    maxLnCorpo: 2),
+                    maxLnCorpo: 3),
                 CardInformation(
                     cabecalho: 'Descrição',
                     corpo: widget.anuncio.descricao,
-                    maxLnCorpo: 3),
+                    maxLnCorpo: 8),
                 CardInformation(
                     cabecalho: 'Valor do produto',
                     corpo: _formataReais(widget.anuncio.valor),

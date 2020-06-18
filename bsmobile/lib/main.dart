@@ -10,8 +10,6 @@ import 'package:bsmobile/pages/pedido.escolha.page.dart';
 import 'package:bsmobile/pages/pedido.page.dart';
 import 'package:bsmobile/pages/usuario.page.dart';
 import 'package:flutter/material.dart';
-import 'package:bsmobile/pages/cadastro.page.dart';
-import 'package:bsmobile/pages/lista.page.dart';
 import 'package:bsmobile/pages/login.page.dart';
 
 
@@ -21,15 +19,13 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
   var routes = {
- '/': (context) => LoginPage(),
-    '/lista': (context) => ListaPage(),
-    '/cadastro': (context) => CadastroPage(),
+    '/': (context) => LoginPage(),
     '/usuario': (context) => UsuarioPage(novoCadastro: null,),
     '/menu': (context) => MenuPage(),
     '/anuncio': (context) => AnuncioPage(),
     '/pedidoescolha': (context) => PedidoEscolhaPage(),    
     '/pedido': (context) => PedidoPage(anuncio: null,),
-    '/pedidodetalhe': (context) => PedidoDetalhePage(pedido: null,),
+    '/pedidodetalhe': (context) => PedidoDetalhePage(pedido: null, listaCompra: null,),
     '/pedidolista': (context) => ListaPedidoPage(),
     '/vendalista': (context) => ListaVendaPage(),
     '/anunciolista': (context) => ListaAnuncioPage(),

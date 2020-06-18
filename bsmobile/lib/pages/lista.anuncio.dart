@@ -23,29 +23,6 @@ class _ListaAnuncioPageState extends State<ListaAnuncioPage> {
     _future = _loadData();
   }
 
-  /*void _showDialogInformation(
-      BuildContext context, String title, String description) {
-    // flutter defined function
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        // return object of type Dialog
-        return AlertDialog(
-          title: new Text(title),
-          content: new Text(description),
-          actions: <Widget>[
-            // usually buttons at the bottom of the dialog
-            new FlatButton(
-              child: new Text("OK"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }*/
 
   Future<List<Anuncio>> _loadData() async {
     //recuperar o token
@@ -207,13 +184,7 @@ class _ListaAnuncioPageState extends State<ListaAnuncioPage> {
                                           ],
                                         ),
                                         onTap: () {
-                                          /*_showDialogInformation(
-                                              context,
-                                              '',
-                                              snapshot.data[position].titulo
-                                                  .toString());
-                                                  'anunciolista'*/
-
+                           
                                           Navigator.of(context).pushReplacement(
                                               MaterialPageRoute(
                                             builder: (context) =>
@@ -221,26 +192,7 @@ class _ListaAnuncioPageState extends State<ListaAnuncioPage> {
                                                     anuncio: snapshot
                                                         .data[position]),
                                           ));
-                                          /*print("click");
-                                          Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  DenunciaView(
-                                                      protocolo:
-                                                          item.protocolo ?? '',
-                                                      tipo: item.tipo ?? '',
-                                                      descricao:
-                                                          item.descricao ?? '',
-                                                      status: item.status ?? '',
-                                                      msgfinal:
-                                                          item.msgfinal ?? '',
-                                                      anonima:
-                                                          item.anonima ?? 'N',
-                                                      endereco: item.local
-                                                              .toString() ??
-                                                          ''),
-                                            ),
-                                          );*/
+                                          
                                         },
                                       );
                                     },

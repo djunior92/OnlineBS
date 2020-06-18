@@ -21,16 +21,6 @@ namespace BSBackEnd.Models
         public int QtdeDisponivel { get; set; }           //quantidade disponível em estoque para venda
         [Required(ErrorMessage = "Informe se realiza entrega")]
         public bool RealizaEntrega { get; set; }         //vendedor realiza entrega? (0/false) Não - (1/true) Sim  
-        public string Foto { get; set; }                  //foto do produto a ser vendido        
-       
-        //public List<Pedido> PedidosGerados { get; set; }
-
-        /*public TipoEntrega RealizaEntrega { get; set; }          //vendedor realiza entrega? 0-Não/1-Sim                
-        //public TipoRetirada TipoRetirada { get; set; }    //Forma(s) que o vendedor disponibiliza o produto - Tipo de retirada: 
-        //                                                                    //0-retirada no local|
-        //                                                                    //1-entrega a domicílio|
-        //                                                                    //2-permite retirada e também realiza entrega
-
-        public List<Venda> Vendas { get; set; }*/       
+        public string Foto { get; set; }                  //foto do produto a ser vendido              
     }
 }                                                                     

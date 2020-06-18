@@ -52,7 +52,7 @@ class _ConfirmaPedidoPageState extends State<ConfirmaPedidoPage> {
       bool result = await _verificaUsuarioEndereco(token);
       if (!result) {
         erro =
-        "É necessário atualizar os dados de endereço de seu usuário para realizar a compra com entrega solicitada!";
+        "É necessário atualizar os dados do seu endereço para solicitar entrega!";
         return result;
       }
     }
@@ -131,7 +131,7 @@ class _ConfirmaPedidoPageState extends State<ConfirmaPedidoPage> {
                           child: Text(
                             widget.anuncio.titulo.toUpperCase(),
                             textAlign: TextAlign.left,
-                            maxLines: 3,
+                            maxLines: 4,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
@@ -290,14 +290,7 @@ class _ConfirmaPedidoPageState extends State<ConfirmaPedidoPage> {
                           ));
                         }
                       }
-                      //TODO: Salvar dados na API
-                      /*_scaffoldKey.currentState.showSnackBar(SnackBar(
-                          content: Text("Classe:" +
-                              widget.anuncio.titulo +
-                              " - Edit:" +
-                              titulo),
-                          backgroundColor: Colors.red,
-                        ));*/
+               
                     },
                   ),
                 ),

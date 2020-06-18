@@ -29,7 +29,6 @@ namespace BSBackEnd.Models
         [MaxLength(14)]
         public string Telefone { get; set; }
 
-
         public List<Pedido> ComprasRealizadas { get; set; }
 
         public List<Anuncio> AnunciosRealizados { get; set; }

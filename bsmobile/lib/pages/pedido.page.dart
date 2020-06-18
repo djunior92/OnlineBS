@@ -54,7 +54,7 @@ class _PedidoPageState extends State<PedidoPage> {
                           child: Text(
                             widget.anuncio.titulo.toUpperCase(),
                             textAlign: TextAlign.left,
-                            maxLines: 3,
+                            maxLines: 4,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
@@ -105,7 +105,7 @@ class _PedidoPageState extends State<PedidoPage> {
                 CardInformation(
                     cabecalho: 'Informações do produto',
                     corpo: widget.anuncio.descricao,
-                    maxLnCorpo: 4),
+                    maxLnCorpo: 8),
                 CardInformation(
                     cabecalho: 'Estoque disponível',
                     corpo: widget.anuncio.qtdeDisponivel.toString(),
@@ -138,7 +138,7 @@ class _PedidoPageState extends State<PedidoPage> {
                     ],
                   ),
                 ),
-                CardEndereco(idPessoa: widget.anuncio.vendedorId, textoTitulo: "Dados do Vendedor", exibirEndereco: !widget.anuncio.realizaEntrega,),
+                CardEndereco(idPessoa: widget.anuncio.vendedorId, textoTitulo: "Dados do Vendedor", exibirEndereco: true,),
                 SizedBox(
                   height: 20,
                 ),

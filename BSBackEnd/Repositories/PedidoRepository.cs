@@ -36,7 +36,7 @@ namespace BSBackEnd.Repositories
             pedido.Id = Guid.NewGuid();
             pedido.DataPedido = DateTime.Now;            
             _context.Pedidos.Add(pedido);
-            pedido.Anuncio.QtdeDisponivel -= pedido.Qtde; //altera estoque
+            pedido.Anuncio.QtdeDisponivel -= pedido.Qtde;
             _context.SaveChanges();
         }
 
@@ -49,31 +49,17 @@ namespace BSBackEnd.Repositories
 
         public List<Pedido> Read(Guid Id)
         {
-            //return _context.Pedidos.Where(Pedido => Pedido.CompradorId == Id).ToList();             
-            //var product = await context.Products.Include(x => x.Category).FirstOrDefaultAsync(x => x.Id == id);   exemplo
-            return _context.Pedidos.Include(x => x.Anuncio).OrderByDescending(p => p.DataPedido).ToList();
+            return _context.Pedidos.Include(x => x.Anuncio).Where(Pedido => Pedido.CompradorId == Id).OrderByDescending(p => p.DataPedido).ToList();
         }
 
         public List<Pedido> ReadVendas(Guid Id)
         {
-            //return _context.Pedidos.Include(x => x.Anuncio).OrderByDescending(p => p.DataPedido).ToList();
             return _context.Pedidos.Include(x => x.Anuncio)
-            .Where(pedido => pedido.Anuncio.VendedorId == Id).ToList();
+            .Where(pedido => pedido.Anuncio.VendedorId == Id).OrderByDescending(p => p.DataPedido).ToList();
         }
 
         public void Update(Guid id, Pedido pedido)
-        {
-            /*Se for receber apenas os campos, especificar. Se receber o objeto completo pode simplificar
-            var _pedido = _context.Pedidos.Find(pedido.Id);
-            _pedido.Titulo = pedido.Titulo;
-            _pedido.Valor = pedido.Valor;
-            _pedido.QtdeDisponivel = pedido.QtdeDisponivel;
-            _context.Entry(_pedido).State = EntityState.Modified;       
-            _context.SaveChanges();*/
-
-            /*_context.Entry(pedido).State = EntityState.Modified;   
-            _context.SaveChanges();    */
-
+        {           
             var _pedido = _context.Pedidos.Find(id);
 
             _pedido.Qtde = pedido.Qtde;

@@ -19,10 +19,6 @@ namespace BSBackEnd.Models
         public bool SolicitaEntrega { get; set; }    //Se o comprador deseja que entreguem o produto (caso o vendedor forneça entrega)
         [Required]
         public DateTime DataPedido { get; set; }
-        /*Implementar futuramente*/
-        //[NotMapped]
-        /*-efetivação
-                (dono do anúncio confirma que a venda foi efetivada) //informação para classificar vendedor/comprados*/
     }
 }
 

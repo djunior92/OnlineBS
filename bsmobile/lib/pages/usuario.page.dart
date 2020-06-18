@@ -18,7 +18,7 @@ class UsuarioPage extends StatefulWidget {
 var _formKey = GlobalKey<FormState>();
 var _scaffoldKey = GlobalKey<ScaffoldState>();
 
-String idUsuario;
+String idUsuario = "";
 
 final _emailController = TextEditingController();
 final _senhaController = TextEditingController();
@@ -39,16 +39,16 @@ Future<bool> _create() async {
 }
 
 Map<String, dynamic> toJson() => {
-  'email': _emailController.text,
-  'senha': _senhaController.text,
-  'nome': _nomeController.text,
-  'cpfCnpj': _cpfCnpjController.text,
-  'endereco': _enderecoController.text,
-  'numero': _numeroController.text,
-  'cep': _cepController.text,
-  'bairro': _bairroController.text,
-  'telefone': _telefoneController.text
-};
+      'email': _emailController.text,
+      'senha': _senhaController.text,
+      'nome': _nomeController.text,
+      'cpfCnpj': _cpfCnpjController.text,
+      'endereco': _enderecoController.text,
+      'numero': _numeroController.text,
+      'cep': _cepController.text,
+      'bairro': _bairroController.text,
+      'telefone': _telefoneController.text
+    };
 
 Future<bool> _editar() async {
   var response = await http.put(URL_USUARIO + '/' + idUsuario,
@@ -58,16 +58,27 @@ Future<bool> _editar() async {
   return response.statusCode == 200 ? true : false;
 }
 
-
 class _UsuarioPageState extends State<UsuarioPage> {
   @override
   initState() {
     super.initState();
-    if (!widget
+    if (widget
         .novoCadastro) //se estiver alterando os dados, então carrega as informações do usuário
-    {
+      _limparCampos();
+    else
       _loadData();
-    };
+  }
+
+  void _limparCampos() {
+    _emailController.text = "";
+    _senhaController.text = "";
+    _nomeController.text = "";
+    _cpfCnpjController.text = "";
+    _enderecoController.text = "";
+    _numeroController.text = "";
+    _cepController.text = "";
+    _bairroController.text = "";
+    _telefoneController.text = "";
   }
 
   Future<void> _loadData() async {
@@ -76,12 +87,14 @@ class _UsuarioPageState extends State<UsuarioPage> {
     final String token = preferences.getString('token');
 
     //acessar a api:
-    var response = await http.get(URL_USUARIO,
+    var response = await http.get(
+      URL_USUARIO,
       headers: {'Authorization': 'Bearer $token'},
     );
 
-    if(response.statusCode == 200){
-      Map<String, dynamic> dados = Map<String, dynamic>.from(jsonDecode(response.body));
+    if (response.statusCode == 200) {
+      Map<String, dynamic> dados =
+          Map<String, dynamic>.from(jsonDecode(response.body));
       Usuario _usuario = Usuario.fromJson(dados);
       setState(() {
         idUsuario = _usuario.id;
@@ -95,7 +108,7 @@ class _UsuarioPageState extends State<UsuarioPage> {
         _bairroController.text = _usuario.bairro;
         _telefoneController.text = _usuario.telefone;
       });
-    }//else if(response.statusCode == 401){
+    } //else if(response.statusCode == 401){
     //  Navigator.of(context).pushReplacementNamed('/');
     //}
   }

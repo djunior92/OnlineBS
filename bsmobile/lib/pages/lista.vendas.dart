@@ -122,31 +122,7 @@ class _ListaVendaPageState extends State<ListaVendaPage> {
                                           children: <Widget>[
                                             Card(
                                               child: Row(
-                                                children: <Widget>[
-                                                  /*Expanded(
-                                                    flex: 1,
-                                                    child: Container(
-                                                      alignment:
-                                                          Alignment.center,
-                                                      color: snapshot
-                                                                  .data[
-                                                                      position]
-                                                                  .qtde ==
-                                                              0
-                                                          ? Colors.red
-                                                          : Colors.green,
-                                                      child: Text(
-                                                        snapshot.data[position]
-                                                                    .qtde ==
-                                                                0
-                                                            ? 'F'
-                                                            : 'A',
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.white),
-                                                      ),
-                                                    ),
-                                                  ),*/
+                                                children: <Widget>[                                                 
                                                   Expanded(
                                                     flex: 12,
                                                     child: ListTile(

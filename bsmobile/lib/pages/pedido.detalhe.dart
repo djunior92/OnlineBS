@@ -58,7 +58,7 @@ class _PedidoDetalhePageState extends State<PedidoDetalhePage> {
                           child: Text(
                             widget.pedido.anuncio.titulo.toUpperCase(),
                             textAlign: TextAlign.left,
-                            maxLines: 3,
+                            maxLines: 4,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
@@ -109,7 +109,7 @@ class _PedidoDetalhePageState extends State<PedidoDetalhePage> {
                 CardInformation(
                     cabecalho: 'Informações do produto',
                     corpo: widget.pedido.anuncio.descricao,
-                    maxLnCorpo: 4),
+                    maxLnCorpo: 8),
                 SizedBox(
                   height: 40,
                 ),

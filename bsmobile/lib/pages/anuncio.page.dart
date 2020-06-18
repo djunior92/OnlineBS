@@ -9,6 +9,8 @@ import 'dart:convert';
 import 'package:bsmobile/uteis/camera.dart';
 import 'package:bsmobile/uteis/server.dart';
 
+import 'widgets/ShowDialog.dart';
+
 class AnuncioPage extends StatefulWidget {
   @override
   _AnuncioPageState createState() => _AnuncioPageState();
@@ -43,7 +45,7 @@ class _AnuncioPageState extends State<AnuncioPage> {
 
     bool result = await _verificaUsuarioEndereco(token);
     if (!result) {
-      erro = "É necessário atualizar os dados de endereço de seu usuário para cadastrar um anúncio!";
+      erro = "É necessário atualizar os dados do seu endereço para cadastrar um anúncio!";
       return result;
     }
 
@@ -186,30 +188,7 @@ class _AnuncioPageState extends State<AnuncioPage> {
         //offset: Offset(-0.1, 0),
       );
 
-  void _showDialogInformation(
-      BuildContext context, String title, String description) {
-    // flutter defined function
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        // return object of type Dialog
-        return AlertDialog(
-          title: new Text(title),
-          content: new Text(description),
-          actions: <Widget>[
-            // usually buttons at the bottom of the dialog
-            new FlatButton(
-              child: new Text("OK"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -369,7 +348,7 @@ class _AnuncioPageState extends State<AnuncioPage> {
                         _formKey.currentState.save();
 
                         if (imgRotated == null) {
-                          _showDialogInformation(context, "Atenção",
+                          showDialogInformation(context, "Atenção",
                               "Insira uma imagem do produto");
                         } else {
                           showWait(context); //abre dialog wait

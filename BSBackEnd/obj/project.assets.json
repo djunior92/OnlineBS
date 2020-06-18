@@ -6426,19 +6426,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Gustavo\\.nuget\\packages\\": {}
+    "C:\\Users\\Juninho\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Gustavo\\Documents\\GitHub\\OnlineBS\\BSBackEnd\\BSBackEnd.csproj",
+      "projectUniqueName": "D:\\Programas\\Microsoft\\OnlineBS\\BSBackEnd\\BSBackEnd.csproj",
       "projectName": "BSBackEnd",
-      "projectPath": "C:\\Users\\Gustavo\\Documents\\GitHub\\OnlineBS\\BSBackEnd\\BSBackEnd.csproj",
-      "packagesPath": "C:\\Users\\Gustavo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Gustavo\\Documents\\GitHub\\OnlineBS\\BSBackEnd\\obj\\",
+      "projectPath": "D:\\Programas\\Microsoft\\OnlineBS\\BSBackEnd\\BSBackEnd.csproj",
+      "packagesPath": "C:\\Users\\Juninho\\.nuget\\packages\\",
+      "outputPath": "D:\\Programas\\Microsoft\\OnlineBS\\BSBackEnd\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Gustavo\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Juninho\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
