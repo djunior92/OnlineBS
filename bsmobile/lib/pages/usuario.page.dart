@@ -301,13 +301,15 @@ class _UsuarioPageState extends State<UsuarioPage> {
                     child: Text("Salvar"),
                     onPressed: () async {
                       if (_formKey.currentState.validate()) {
-                        showWait(context); //abre dialog wait
                         _formKey.currentState.save();
+
+                        showWait(context); //abre dialog wait
+                        bool result =
+                            await (widget.novoCadastro ? _create() : _editar());
                         Navigator.of(context, rootNavigator: true)
                             .pop(true); //fecha dialog wait
 
-                        //TODO: Salvar dados na API
-                        if (await (widget.novoCadastro ? _create() : _editar()))
+                        if (result)
                           Navigator.of(context).pop();
                         else
                           _scaffoldKey.currentState.showSnackBar(SnackBar(

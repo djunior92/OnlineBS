@@ -66,9 +66,9 @@ class _AlteraAnuncioPageState extends State<AlteraAnuncioPage> {
     final formatter = new NumberFormat("#,##0.00", "pt_BR");
     //final formatter = new NumberFormat.currency(locale: "pt_BR");
 
-    double initialValue = num.parse(oldValue.toStringAsPrecision(2));
-
-    return formatter.format(initialValue);
+    //double initialValue = num.parse(oldValue.toStringAsPrecision(2));
+    //return formatter.format(initialValue);
+    return formatter.format(oldValue);
   }
 
   @override
@@ -102,7 +102,7 @@ class _AlteraAnuncioPageState extends State<AlteraAnuncioPage> {
                 CardInformation(
                     cabecalho: 'Descrição',
                     corpo: widget.anuncio.descricao,
-                    maxLnCorpo: 8),
+                    maxLnCorpo: 12),
                 CardInformation(
                     cabecalho: 'Valor do produto',
                     corpo: _formataReais(widget.anuncio.valor),

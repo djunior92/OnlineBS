@@ -25,10 +25,9 @@ class _ListaVendaPageState extends State<ListaVendaPage> {
   String _formataReais(double oldValue) {
     final formatter = new NumberFormat("#,##0.00", "pt_BR");
     //final formatter = new NumberFormat.currency(locale: "pt_BR");
-
-    double initialValue = num.parse(oldValue.toStringAsPrecision(2));
-
-    return formatter.format(initialValue);
+    //double initialValue = num.parse(oldValue.toStringAsPrecision(2));
+    //return formatter.format(initialValue);
+    return formatter.format(oldValue);
   }
 
   Future<List<Pedido>> _loadData() async {

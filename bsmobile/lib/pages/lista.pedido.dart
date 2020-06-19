@@ -26,9 +26,10 @@ class _ListaPedidoPageState extends State<ListaPedidoPage> {
     final formatter = new NumberFormat("#,##0.00", "pt_BR");
     //final formatter = new NumberFormat.currency(locale: "pt_BR");
 
-    double initialValue = num.parse(oldValue.toStringAsPrecision(2));
+    //double initialValue = num.parse(oldValue.toStringAsPrecision(2));
+    //return formatter.format(initialValue);
+    return formatter.format(oldValue);
 
-    return formatter.format(initialValue);
   }
 
   Future<List<Pedido>> _loadData() async {

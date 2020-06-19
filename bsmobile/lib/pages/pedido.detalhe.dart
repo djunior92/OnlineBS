@@ -25,9 +25,10 @@ class PedidoDetalhePage extends StatefulWidget {
 String _formataReais(double oldValue) {
   final formatter = new NumberFormat("#,##0.00", "pt_BR");
 
-  double initialValue = num.parse(oldValue.toStringAsPrecision(2));
+  //double initialValue = num.parse(oldValue.toStringAsPrecision(2));
+  //return formatter.format(initialValue);
 
-  return formatter.format(initialValue);
+  return formatter.format(oldValue);
 }
 
 class _PedidoDetalhePageState extends State<PedidoDetalhePage> {
@@ -109,7 +110,7 @@ class _PedidoDetalhePageState extends State<PedidoDetalhePage> {
                 CardInformation(
                     cabecalho: 'Informações do produto',
                     corpo: widget.pedido.anuncio.descricao,
-                    maxLnCorpo: 8),
+                    maxLnCorpo: 12),
                 SizedBox(
                   height: 40,
                 ),
